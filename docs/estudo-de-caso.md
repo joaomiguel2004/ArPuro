@@ -109,3 +109,28 @@ O ArPuro transforma indicadores poluentes abstratos em ações práticas de pres
 | *9. Exportação de Dados para o Poder Público* | Atende à necessidade de transparência, ciência cidadã e integração institucional com secretarias municipais e prefeituras. |
 
 ---
+ 
+## 2.7. Restrições e Condições
+ 
+* **Restrição de Telas:** O protótipo de alta fidelidade deve conter estritamente **até 4 telas principais** (Semáforo do Dia, Mapa de Focos, Formulário com Foto/GPS e Orientações de Proteção).
+* **Restrição de Interações (Regra dos 3 Toques):** A jornada nuclear do app (denúncia de poluição) não pode ultrapassar 3 toques (Abrir aplicativo > Tocar em Notificar foco > Capturar foto e Enviar).
+* **Restrições de Dispositivo e Sistema Operacional:** O software deve rodar de forma fluida e responsiva em smartphones básicos/de entrada, com restrições de memória RAM e processamento.
+* **Restrições de Conectividade e Armazenamento:** Suporte mandatário a armazenamento local (cache offline) de mapas e formulários; sincronização configurada para uso prioritário/exclusivo em rede Wi-Fi.
+* **Restrições de Privacidade e Segurança:** Permissão expressa para reporte de dados sem identificação nominal do usuário (anonimato garantido).
+* **Restrições de Acessibilidade e Interface sob Luz Solar:** Obrigatoriedade de semáforo padronizado (verde/amarelo/vermelho/cinza) e uso prioritário do **modo claro** com tipografia de alto contraste para visibilidade externa sob sol direto.
+* **Restrições de Recursos de Hardware:** Uso indispensável das permissões e APIs de Câmera e Localização (GPS).
+ 
+---
+ 
+## 2.8. Pontos de Atenção
+ 
+Os **3 aspectos mais importantes para o sucesso do aplicativo** identificados pelo grupo são:
+ 
+1. **Eficiência do Fluxo de Notificação (A Regra dos 3 Toques sob Condições Adversas de Campo):**
+   * *Motivo:* Ativistas e pedestres realizam denúncias em calçadas, sob sol forte, segurando o celular com apenas uma mão e frequentemente em movimento. Se o aplicativo possuir formulários burocráticos ou lentos, a taxa de abandono do reporte será altíssima. A arquitetura de navegação deve garantir uma ação quase instantânea.
+ 
+2. **Resiliência Offline e Políticas de Sincronização via Wi-Fi:**
+   * *Motivo:* Focos críticos de contaminação (córregos, fundos de vale e áreas periféricas) frequentemente coincidem com zonas de sombra de cobertura de dados celulares. Se a captura de foto e coordenadas depender de conexão online ativa para salvar os dados, a aplicação falhará exatamente nos locais em que é mais necessária. O armazenamento local e envio posterior sem ônus na franquia 4G é o pilar técnico da solução.
+ 
+3. **Eficácia da Tradução Semafórica e Empatia Comunicacional (Sem Alarmismo):**
+   * *Motivo:* Para pacientes com asma e bronquite, a exibição crua de índices como $\mu\text{g/m}^3$ gera desorientação ou pânico infundado. A chave do produto é a capacidade de sintetizar variáveis analíticas complexas na metáfora visual do semáforo com dicas profiláticas serenas e práticas, tornando o app um hábito de saúde diário confiável.
