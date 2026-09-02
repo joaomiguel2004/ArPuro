@@ -15,39 +15,41 @@ O objetivo deste documento é apresentar a análise crítica e estruturada do es
 ## 2.1. Problema
 
 ### Qual problema o aplicativo pretende ajudar a solucionar?
-O aplicativo aborda a desconexão crônica entre a vigilância em saúde respiratória individual e a qualidade real do ar e dos corpos hídricos urbanos. No cotidiano das cidades, a população vulnerável (especialmente portadores de doenças respiratórias crônicas) e os ativistas ambientais carecem de instrumentos integrados para mensurar a toxicidade ambiental invisível (como materiais particulados e ozônio) e para denunciar, de forma célere e georreferenciada, focos pontuais de poluição (córregos contaminados, esgoto a céu aberto, queimadas e lixões clandestinos).
+Hoje em dia, quem tem problemas respiratórios graves (como asma e bronquite) não sabe exatamente quando o ar da rua está perigoso para respirar. Ao mesmo tempo, moradores e ativistas que veem um esgoto vazando, um córrego sujo ou queimadas no bairro não encontram um jeito simples, anônimo e rápido de registrar e denunciar essa situação direto pelo celular.
 
 ### Por que esse problema é relevante?
-A poluição do ar e da água representa uma das principais causas de internações de urgência e morbimortalidade evitável em centros urbanos. Segundo a OMS, partículas finas ($MP_{10}$) e ozônio troposférico não possuem limiares seguros de inalação, induzindo estresse oxidativo, broncoespasmos imediatos e declínio crônico da função pulmonar. Concomitantemente, a proliferação de cianobactérias e a emissão de aerossóis de esgoto em córregos urbanos degradam a saúde comunitária periférica. A falta de dados acessíveis sobrecarrega os serviços públicos de saúde com atendimentos que poderiam ser mitigados com ações preventivas simples.
+A poluição do ar e da água causa crises respiratórias graves e enche os postos de saúde e prontos-socorros com casos que poderiam ser evitados. Segundo a OMS, poeira fina ($MP_{10}$) e ozônio causam tosse e falta de ar mesmo em quantidades baixas. Além disso, rios poluídos e lixões perto de casa soltam mau cheiro e bactérias no ar, piorando a vida das pessoas que moram nas redondezas. Se as pessoas tivessem informação simples a tempo, poderiam se proteger melhor.
 
 ### Qual é a principal necessidade que a solução deverá atender?
-Traduzir métricas ambientais laboratoriais complexas em alertas profiláticos acionáveis para a rotina da população vulnerável, paralelamente à criação de um canal ágil e de baixíssima fricção para mapeamento georreferenciado e denúncia cidadã de passivos ecológicos.
+Explicar a qualidade do ar de um jeito que qualquer pessoa entenda sem precisar ser cientista, e dar uma ferramenta rápida para qualquer cidadão tirar foto de um foco de poluição e mandar a localização na hora.
+
+---
 
 ## 2.2. Público e Usuários
  
-### 1. Pacientes com Doenças Respiratórias Crônicas (Asma e Bronquite)
-* **Quem é:** Indivíduos de faixas etárias variadas que convivem com hiper-reatividade brônquica crônica e alta suscetibilidade a variações de umidade e particulados em suspensão.
-* **Relação com o aplicativo:** Usuários de perfil consultivo contínuo (uso diário/matinal).
-* **Necessidades:** Saber antecipadamente se a qualidade do ar externa oferece risco de descompensação clínica, se devem evitar atividades físicas e quais precauções tomar (uso de máscara, bombinha à mão, fechamento de janelas).
-* **Situação de uso:** Ao acordar ou antes de planejar deslocamentos a pé, exercícios físicos e rotinas diárias de saída de casa.
- 
-### 2. Ativistas Ambientais e Comunidade Engajada
-* **Quem é:** Integrantes de coletivos ecológicos, lideranças de bairro e cidadãos comprometidos com a preservação de mananciais e fiscalização urbana.
-* **Relação com o aplicativo:** Usuários de perfil ativo/colaborativo (alimentadores do mapa de focos de poluição).
-* **Necessidades:** Registrar denúncias em campo com rapidez, respaldo fotográfico e coordenadas precisas de GPS, sem exposição da sua identidade física (garantia de anonimato).
-* **Situação de uso:** Durante caminhadas, inspeções de bacias hidrográficas, deslocamentos em praças e margens de rios ao constatar irregularidades.
- 
-### 3. Educadores (Professores de Ciências e Biologia)
-* **Quem é:** Professores do ensino fundamental, médio e técnico voltados à formação cidadã e consciência ecológica.
-* **Relação com o aplicativo:** Usuários de perfil pedagógico e multiplicadores comunitários.
-* **Necessidades:** Visualizar e demonstrar dados ambientais locais consolidados, conectando conteúdos teóricos curriculares com o mapa de problemas reais do território escolar.
-* **Situação de uso:** Em sala de aula ou em atividades de campo pedagógicas para debate sobre saneamento básico, qualidade do ar e ciência cidadã.
- 
-### 4. Gestores Públicos de Saúde e Pesquisadores
-* **Quem é:** Técnicos de secretarias municipais de saúde/meio ambiente e acadêmicos de epidemiologia e ecologia urbana.
-* **Relação com o aplicativo:** Consumidores de dados agregados e receptores de dados públicos abertos.
-* **Necessidades:** Ter acesso a relatórios e dados espaciais exportáveis para subsidiar tomadas de decisão, fiscalização sanitária e alocação preventiva de insumos médicos.
-* **Situação de uso:** Em computadores e sistemas administrativos ao analisar relatórios de focos territoriais e curvas de morbidade respiratória sazonal.
+### 1. Pessoas com Problemas Respiratórios (Asma e Bronquite)
+* **Quem é:** Pessoas de qualquer idade que sofrem com crises de falta de ar causadas por tempo seco, poeira e fumaça.
+* **Relação com o aplicativo:** Vão usar o app todo dia de manhã para saber como está o ar da cidade.
+* **Necessidades:** Saber se é seguro sair de casa, se podem fazer caminhada ou exercício e quais cuidados tomar no dia (levar bombinha, usar máscara, fechar janelas).
+* **Situação de uso:** Logo cedo, ao acordar, antes de sair para o trabalho, escola ou parque.
+
+### 2. Ativistas e Moradores Engajados
+* **Quem é:** Pessoas que participam de ações no bairro e se preocupam em cuidar de praças, rios e áreas verdes.
+* **Relação com o aplicativo:** Vão usar o app de vez em quando, na hora em que encontrarem sujeira ou poluição na rua.
+* **Necessidades:** Um jeito rápido de tirar foto da sujeira e marcar no mapa sem burocracia, além de poder mandar a denúncia de forma anônima para evitar problemas.
+* **Situação de uso:** Caminhando na rua, perto de córregos ou praças, usando o celular no sol forte.
+
+### 3. Professores de Ciências e Biologia
+* **Quem é:** Professores de escolas da região que ensinam sobre meio ambiente e saúde.
+* **Relação com o aplicativo:** Vão usar como ferramenta nas aulas para mostrar a realidade do bairro para os alunos.
+* **Necessidades:** Ver o mapa com os pontos de poluição da cidade de forma simples para mostrar aos estudantes e montar projetos práticos.
+* **Situação de uso:** Em sala de aula ou em caminhadas com os alunos para discutir saneamento básico e cuidados com o ar.
+
+### 4. Profissionais da Saúde e Pesquisadores
+* **Quem é:** Funcionários de postos de saúde, secretarias municipais e pessoas que estudam a saúde da cidade.
+* **Relação com o aplicativo:** Vão consultar os dados e relatórios gerados pelas pessoas.
+* **Necessidades:** Poder baixar relatórios e ver em quais bairros existem mais problemas para planejar ações de limpeza e campanhas de vacinação/atendimento.
+* **Situação de uso:** No trabalho diário e no planejamento de ações públicas de saúde e meio ambiente.
   
 ---
 
@@ -55,70 +57,69 @@ Traduzir métricas ambientais laboratoriais complexas em alertas profiláticos a
 
 A análise dos cenários reais de interação revela severas implicações de engenharia móvel:
 
-* *Ambiente e Iluminação:*
-  * Condição: O aplicativo será operado com frequência em ambientes externos (vias públicas, parques, praças e margens de rios sob sol pleno).
-  * Implicações: A interface deve adotar prioritariamente o *modo claro*, tipografia robusta e paleta de alto contraste cromático para evitar que a tela fique ilegível sob reflexo solar.
-* *Momento, Nível de Atenção e Urgência:*
-  * Condição: Usuários em movimento (caminhando) ou em trânsito exigem tomadas de decisão imediatas sem dispersão.
-  * Implicações: A ação principal de notificação de poluição deve ser resolvida em fluxo ultra-rápido (regra dos 3 toques: Abrir > Notificar foco > Tirar foto > Enviar). A tela principal não pode exigir leitura minuciosa de textos, baseando-se no semáforo visual verde/amarelo/vermelho/cinza.
-* *Dispositivo e Hardware:*
-  * Condição: Usuários operando smartphones básicos/de entrada, com sensores limitados e restrição de memória/processamento.
-  * Implicações: A arquitetura do app deve priorizar componentes nativos leves, sem animações pesadas, garantindo inicialização ágil e baixo consumo de bateria ao acionar sensores de Câmera e GPS.
-* *Conectividade:*
-  * Condição: Em margens de córregos e áreas periféricas, o sinal de rede 3G/4G/5G costuma ser instável ou inexistente, e ativistas frequentemente contam com franquias de dados móveis limitadas.
-  * Implicações: A aplicação deve operar em *modo offline* para registro de fotos e coordenadas no banco local (cache). A sincronização pesada de pacotes e mapas deve ser configurada para ocorrer preferencialmente ou exclusivamente quando houver conexão Wi-Fi disponível.
+* **Ambiente e Iluminação:**
+  * *Situação:* As pessoas vão usar o app na rua, em praças e perto de córregos, muitas vezes debaixo do sol do meio-dia.
+  * *O que isso muda no app:* O visual tem que priorizar o **modo claro**, com letras legíveis e bastante contraste de cores para ninguém precisar forçar a vista na claridade.
+* **Momento, Atenção e Pressa:**
+  * *Situação:* Quem está andando na rua quer resolver a denúncia rápido para não ficar moscando com o celular na mão.
+  * *O que isso muda no app:* O fluxo de denúncia tem que ser direto ao ponto (regra dos 3 toques: Abrir > Clicar em Notificar > Tirar foto e Enviar). Além disso, a tela inicial precisa mostrar o risco do dia com um semáforo colorido de fácil entendimento.
+* **Aparelhos dos Usuários:**
+  * *Situação:* Muita gente usa celulares simples e mais antigos, com pouca memória e bateria limitada.
+  * *O que isso muda no app:* O aplicativo precisa ser leve, sem travamentos ou telas cheias de firulas, usando a câmera e o GPS sem gastar a bateria inteira.
+* **Internet e Conexão:**
+  * *Situação:* Em fundos de vale e na beira de córregos o sinal de celular costuma ser ruim ou sumir totalmente. Além disso, o pacote de dados móveis do usuário pode acabar.
+  * *O que isso muda no app:* O app precisa **funcionar sem internet (offline)**. O usuário consegue tirar a foto e marcar o ponto no mapa offline, e o app espera o celular conectar ao Wi-Fi para enviar tudo de uma vez sem gastar o 4G da pessoa.
 
 ---
 
 ## 2.4. Objetivo e Proposta de Valor
 
-*O que o aplicativo pretende oferecer:*  
-Um ecossistema móvel intuitivo composto por um painel de alerta biomédico-ambiental e uma rede colaborativa de monitoramento territorial cidadão.
-
-*Qual benefício proporciona ao usuário:*  
-O ArPuro transforma indicadores poluentes abstratos em ações práticas de preservação à saúde, concedendo previsibilidade e segurança a pessoas asmáticas e portadoras de bronquite, enquanto confere voz ativa e poder de fiscalização anônimo e georreferenciado à cidadania para cobrar o saneamento ambiental de suas comunidades.
+* **O que o aplicativo quer entregar:**  
+  Um aplicativo fácil de usar que junta um painel do ar do dia (como uma previsão do tempo da saúde) com um mapa colaborativo onde qualquer pessoa pode avisar onde tem poluição na cidade.
+  
+* **Benefício real para quem usa:**  
+  Para quem tem asma, traz tranquilidade ao avisar com antecedência se é seguro sair na rua. Para quem quer ver a cidade limpa, dá um jeito seguro e sem enrolação de cobrar providências da prefeitura tirando fotos de onde tem problema.
 
 ---
 
-
 ## 2.5. Personalidade, Identidade e Experiência
 
-* *Palavras Conceituais:* $MP_{10}$, Ozônio, Asma, Bronquite, Cianobactérias, Córregos, Saneamento Básico, Poluição, Queimadas, Saúde Ambiental.
-  * Influência na Solução: Devem orientar os metadados de classificação no cadastro do formulário de foco e os critérios de busca e filtragem do mapa colaborativo.
-* *Personalidade da Identidade:* Ecológica, científica e cidadã.
-  * Influência na Solução: Visual estruturado com tons naturais de verde, terra (marrom, alaranjado) e ícones botânicos/orgânicos, transmitindo credibilidade científica e engajamento comunitário.
-* *Tom da Interface e da Experiência do Usuário:* Cívica, educativa e serena (estilo "boletim meteorológico da saúde").
-  * Influência na Solução: Não adotar alertas sensacionalistas de terror ou pânico. O design precisa instruir pedagogicamente sobre riscos e apontar medidas de alívio preventivo imediatas.
-* *Forma como deseja ser lembrado:* "O termômetro que mede a febre do planeta e a nossa."
-  * Influência na Solução: O design do semáforo do dia deve comunicar que a febre ambiental externa está intrinsecamente ligada à resposta inflamatória do corpo humano.
+* **Palavras Conceituais ($MP_{10}$, Ozônio, Asma, Bronquite, Cianobactérias, Córregos, Saneamento Básico, Poluição, Queimadas, Saúde Ambiental):**  
+  * *Como entra no app:* Essas palavras vão virar filtros simples no mapa e opções fáceis de marcar no formulário de denúncia.
+* **Estilo Visual (Ecológico, Confiável e Cidadão):**  
+  * *Como entra no app:* Cores que lembram a natureza (tons de verde, marrom e laranja suave) e ícones de folhas, passando a sensação de um app sério, mas amigável e comunitário.
+* **Tom de Voz do App (Educativo e Tranquilo):**  
+  * *Como entra no app:* O app precisa parecer um "boletim do tempo da saúde". A ideia não é criar pânico quando o ar estiver ruim, mas sim dar dicas úteis e acolhedoras para a pessoa se cuidar (exemplo: "Hoje o ar está seco, beba bastante água e prefira caminhar em lugares fechados").
+* **Como o app quer ser lembrado:** *"O termômetro que mede a febre do planeta e a nossa."*  
+  * *Como entra no app:* Mostrar que se a cidade e as águas estão doentes, a respiração de todo mundo sofre junto.
 
 ---
 
 ## 2.6. Funcionalidades e Características Já Definidas
 
-| Funcionalidade / Característica | Necessidade Atendida |
+| Funcionalidade | Para que serve no dia a dia? |
 | :--- | :--- |
-| *1. Semáforo do Dia (Qualidade do ar imediata)* | Atende à necessidade do paciente crônico de verificar, em segundos e sem esforço cognitivo, o grau de toxicidade atmosférica para decidir sobre sua rotina diária de saída. |
-| *2. Tradução de Índices Técnicos ($MP_{10}$/Ozônio)* | Atende à necessidade de acessibilidade comunicacional, convertendo dados laboratoriais em linguagem cidadã direta (ex: "Ar bom hoje para correr"). |
-| *3. Mapa Colaborativo de Focos de Poluição* | Atende à necessidade de ativistas e comunidade de visualizar e mapear córregos degradados, lixões clandestinos e esgoto a céu aberto na cidade. |
-| *4. Formulário de Notificação com Foto e GPS* | Atende à necessidade de ativistas e cidadãos de registrar evidências fáticas e geoespaciais dos focos de poluição de forma célere em campo. |
-| *5. Envio Anônimo de Denúncias* | Atende à necessidade de proteção, segurança e privacidade do cidadão ao apontar irregularidades ambientais no bairro. |
-| *6. Calculadora de Risco Sazonal e Regional* | Atende à necessidade profilática do usuário asmático de antecipar o risco associado a estações críticas (estiagem/inverno vs. radiação/ozônio no verão). |
-| *7. Orientações e Dicas de Proteção Respiratória* | Atende à necessidade de mitigação prática de crises (fechar janelas, higienização de mucosas, uso de máscara, bombinha preventiva). |
-| *8. Cache e Operação Offline com Sincronização via Wi-Fi* | Atende à necessidade operacional de campo em áreas com sinal celular instável, preservando o plano de dados móveis do usuário. |
-| *9. Exportação de Dados para o Poder Público* | Atende à necessidade de transparência, ciência cidadã e integração institucional com secretarias municipais e prefeituras. |
+| **1. Semáforo do Dia (Qualidade do ar)** | Permite que quem tem asma ou bronquite bata o olho e saiba na hora se o ar do dia está perigoso ou tranquilo. |
+| **2. Tradução de Índices Técnicos ($MP_{10}$)** | Troca termos científicos difíceis por avisos simples (como *"Ar bom hoje para correr"*). |
+| **3. Mapa Colaborativo de Focos de Poluição** | Mostra em um mapa onde os vizinhos marcaram esgoto a céu aberto, córregos sujos e entulho. |
+| **4. Notificação com Foto e GPS** | Facilita provar o problema com foto e localização exata direto pelo celular. |
+| **5. Envio de Denúncia Anônima** | Protege quem está denunciando para que ninguém sofra perseguição ou constrangimento no bairro. |
+| **6. Calculadora de Risco por Época do Ano** | Avisa com antecedência sobre épocas mais críticas (como meses secos de inverno ou dias de calor extremo). |
+| **7. Dicas de Proteção Respiratória** | Ensina medidas fáceis para evitar crises (usar máscara na rua, fechar janelas de casa em horários de pico). |
+| **8. Uso Offline com Sincronização via Wi-Fi** | Deixa o usuário tirar a foto mesmo sem internet na rua e guarda os dados para enviar só quando achar uma rede Wi-Fi. |
+| **9. Dados Públicos Exportáveis para Prefeituras** | Permite juntar todas as denúncias para cobrar os órgãos públicos com dados reais em mãos. |
 
 ---
  
 ## 2.7. Restrições e Condições
  
-* **Restrição de Telas:** O protótipo de alta fidelidade deve conter estritamente **até 4 telas principais** (Semáforo do Dia, Mapa de Focos, Formulário com Foto/GPS e Orientações de Proteção).
-* **Restrição de Interações (Regra dos 3 Toques):** A jornada nuclear do app (denúncia de poluição) não pode ultrapassar 3 toques (Abrir aplicativo > Tocar em Notificar foco > Capturar foto e Enviar).
-* **Restrições de Dispositivo e Sistema Operacional:** O software deve rodar de forma fluida e responsiva em smartphones básicos/de entrada, com restrições de memória RAM e processamento.
-* **Restrições de Conectividade e Armazenamento:** Suporte mandatário a armazenamento local (cache offline) de mapas e formulários; sincronização configurada para uso prioritário/exclusivo em rede Wi-Fi.
-* **Restrições de Privacidade e Segurança:** Permissão expressa para reporte de dados sem identificação nominal do usuário (anonimato garantido).
-* **Restrições de Acessibilidade e Interface sob Luz Solar:** Obrigatoriedade de semáforo padronizado (verde/amarelo/vermelho/cinza) e uso prioritário do **modo claro** com tipografia de alto contraste para visibilidade externa sob sol direto.
-* **Restrições de Recursos de Hardware:** Uso indispensável das permissões e APIs de Câmera e Localização (GPS).
+* **Limite de Telas:** O aplicativo precisa ter no máximo **4 telas principais** (Semáforo do Dia, Mapa de Poluição, Tela de Denúncia com Foto/GPS e Dicas de Cuidados).
+* **Regra dos 3 Toques:** Fazer uma denúncia não pode demorar mais que 3 toques na tela (Abrir o app > Clicar em Notificar > Tirar a foto e Enviar).
+* **Aparelhos Suportados:** O aplicativo precisa funcionar bem em celulares básicos, sem travar nem fechar sozinho.
+* **Internet e Dados:** Precisa salvar coisas na memória do celular para abrir sem sinal e sincronizar fotos preferencialmente via Wi-Fi.
+* **Privacidade:** Ninguém deve ser obrigado a se identificar para registrar uma denúncia.
+* **Cores e Visibilidade:** O semáforo colorido é obrigatório (verde-limão para ar bom até cinza-escuro para ar muito ruim) e a tela tem que ser legível mesmo sob sol forte.
+* **Sensores Necessários:** O aplicativo precisa de permissão de Câmera e GPS para funcionar direito.
  
 ---
  
@@ -126,11 +127,11 @@ O ArPuro transforma indicadores poluentes abstratos em ações práticas de pres
  
 Os **3 aspectos mais importantes para o sucesso do aplicativo** identificados pelo grupo são:
  
-1. **Eficiência do Fluxo de Notificação (A Regra dos 3 Toques sob Condições Adversas de Campo):**
-   * *Motivo:* Ativistas e pedestres realizam denúncias em calçadas, sob sol forte, segurando o celular com apenas uma mão e frequentemente em movimento. Se o aplicativo possuir formulários burocráticos ou lentos, a taxa de abandono do reporte será altíssima. A arquitetura de navegação deve garantir uma ação quase instantânea.
- 
-2. **Resiliência Offline e Políticas de Sincronização via Wi-Fi:**
-   * *Motivo:* Focos críticos de contaminação (córregos, fundos de vale e áreas periféricas) frequentemente coincidem com zonas de sombra de cobertura de dados celulares. Se a captura de foto e coordenadas depender de conexão online ativa para salvar os dados, a aplicação falhará exatamente nos locais em que é mais necessária. O armazenamento local e envio posterior sem ônus na franquia 4G é o pilar técnico da solução.
- 
-3. **Eficácia da Tradução Semafórica e Empatia Comunicacional (Sem Alarmismo):**
-   * *Motivo:* Para pacientes com asma e bronquite, a exibição crua de índices como $\mu\text{g/m}^3$ gera desorientação ou pânico infundado. A chave do produto é a capacidade de sintetizar variáveis analíticas complexas na metáfora visual do semáforo com dicas profiláticas serenas e práticas, tornando o app um hábito de saúde diário confiável.
+1. **A denúncia tem que ser rápida de verdade (Regra dos 3 toques na rua):**  
+   Se o usuário estiver andando na rua debaixo de sol e o app pedir para preencher formulários compridos, ele vai desistir na hora. O processo de abrir, bater a foto e enviar precisa ser quase automático.
+
+2. **O app tem que salvar tudo sem internet:**  
+   Muitos córregos e lixões ficam em lugares com sinal fraco de celular. Se o aplicativo depender de internet boa na hora para salvar a foto, o morador não vai conseguir avisar do problema onde mais importa. Poder salvar tudo offline e enviar só no Wi-Fi é o que vai fazer o app funcionar de verdade.
+
+3. **Linguagem acolhedora e direta (Sem assustar as pessoas):**  
+   Quem tem asma só quer saber: "posso sair na rua agora sem passar mal?". O app precisa responder isso com cores intuitivas e conselhos claros, sem ficar jogando números difíceis que só confundem e assustam o usuário.
