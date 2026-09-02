@@ -22,3 +22,30 @@ A poluição do ar e da água representa uma das principais causas de internaç�
 
 ### Qual é a principal necessidade que a solução deverá atender?
 Traduzir métricas ambientais laboratoriais complexas em alertas profiláticos acionáveis para a rotina da população vulnerável, paralelamente à criação de um canal ágil e de baixíssima fricção para mapeamento georreferenciado e denúncia cidadã de passivos ecológicos.
+
+
+## 2.2. Público e Usuários
+ 
+### 1. Pacientes com Doenças Respiratórias Crônicas (Asma e Bronquite)
+* **Quem é:** Indivíduos de faixas etárias variadas que convivem com hiper-reatividade brônquica crônica e alta suscetibilidade a variações de umidade e particulados em suspensão.
+* **Relação com o aplicativo:** Usuários de perfil consultivo contínuo (uso diário/matinal).
+* **Necessidades:** Saber antecipadamente se a qualidade do ar externa oferece risco de descompensação clínica, se devem evitar atividades físicas e quais precauções tomar (uso de máscara, bombinha à mão, fechamento de janelas).
+* **Situação de uso:** Ao acordar ou antes de planejar deslocamentos a pé, exercícios físicos e rotinas diárias de saída de casa.
+ 
+### 2. Ativistas Ambientais e Comunidade Engajada
+* **Quem é:** Integrantes de coletivos ecológicos, lideranças de bairro e cidadãos comprometidos com a preservação de mananciais e fiscalização urbana.
+* **Relação com o aplicativo:** Usuários de perfil ativo/colaborativo (alimentadores do mapa de focos de poluição).
+* **Necessidades:** Registrar denúncias em campo com rapidez, respaldo fotográfico e coordenadas precisas de GPS, sem exposição da sua identidade física (garantia de anonimato).
+* **Situação de uso:** Durante caminhadas, inspeções de bacias hidrográficas, deslocamentos em praças e margens de rios ao constatar irregularidades.
+ 
+### 3. Educadores (Professores de Ciências e Biologia)
+* **Quem é:** Professores do ensino fundamental, médio e técnico voltados à formação cidadã e consciência ecológica.
+* **Relação com o aplicativo:** Usuários de perfil pedagógico e multiplicadores comunitários.
+* **Necessidades:** Visualizar e demonstrar dados ambientais locais consolidados, conectando conteúdos teóricos curriculares com o mapa de problemas reais do território escolar.
+* **Situação de uso:** Em sala de aula ou em atividades de campo pedagógicas para debate sobre saneamento básico, qualidade do ar e ciência cidadã.
+ 
+### 4. Gestores Públicos de Saúde e Pesquisadores
+* **Quem é:** Técnicos de secretarias municipais de saúde/meio ambiente e acadêmicos de epidemiologia e ecologia urbana.
+* **Relação com o aplicativo:** Consumidores de dados agregados e receptores de dados públicos abertos.
+* **Necessidades:** Ter acesso a relatórios e dados espaciais exportáveis para subsidiar tomadas de decisão, fiscalização sanitária e alocação preventiva de insumos médicos.
+* **Situação de uso:** Em computadores e sistemas administrativos ao analisar relatórios de focos territoriais e curvas de morbidade respiratória sazonal.
