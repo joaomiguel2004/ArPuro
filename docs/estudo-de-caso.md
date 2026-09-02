@@ -79,3 +79,33 @@ Um ecossistema móvel intuitivo composto por um painel de alerta biomédico-ambi
 O ArPuro transforma indicadores poluentes abstratos em ações práticas de preservação à saúde, concedendo previsibilidade e segurança a pessoas asmáticas e portadoras de bronquite, enquanto confere voz ativa e poder de fiscalização anônimo e georreferenciado à cidadania para cobrar o saneamento ambiental de suas comunidades.
 
 ---
+
+
+## 2.5. Personalidade, Identidade e Experiência
+
+* *Palavras Conceituais:* $MP_{10}$, Ozônio, Asma, Bronquite, Cianobactérias, Córregos, Saneamento Básico, Poluição, Queimadas, Saúde Ambiental.
+  * Influência na Solução: Devem orientar os metadados de classificação no cadastro do formulário de foco e os critérios de busca e filtragem do mapa colaborativo.
+* *Personalidade da Identidade:* Ecológica, científica e cidadã.
+  * Influência na Solução: Visual estruturado com tons naturais de verde, terra (marrom, alaranjado) e ícones botânicos/orgânicos, transmitindo credibilidade científica e engajamento comunitário.
+* *Tom da Interface e da Experiência do Usuário:* Cívica, educativa e serena (estilo "boletim meteorológico da saúde").
+  * Influência na Solução: Não adotar alertas sensacionalistas de terror ou pânico. O design precisa instruir pedagogicamente sobre riscos e apontar medidas de alívio preventivo imediatas.
+* *Forma como deseja ser lembrado:* "O termômetro que mede a febre do planeta e a nossa."
+  * Influência na Solução: O design do semáforo do dia deve comunicar que a febre ambiental externa está intrinsecamente ligada à resposta inflamatória do corpo humano.
+
+---
+
+## 2.6. Funcionalidades e Características Já Definidas
+
+| Funcionalidade / Característica | Necessidade Atendida |
+| :--- | :--- |
+| *1. Semáforo do Dia (Qualidade do ar imediata)* | Atende à necessidade do paciente crônico de verificar, em segundos e sem esforço cognitivo, o grau de toxicidade atmosférica para decidir sobre sua rotina diária de saída. |
+| *2. Tradução de Índices Técnicos ($MP_{10}$/Ozônio)* | Atende à necessidade de acessibilidade comunicacional, convertendo dados laboratoriais em linguagem cidadã direta (ex: "Ar bom hoje para correr"). |
+| *3. Mapa Colaborativo de Focos de Poluição* | Atende à necessidade de ativistas e comunidade de visualizar e mapear córregos degradados, lixões clandestinos e esgoto a céu aberto na cidade. |
+| *4. Formulário de Notificação com Foto e GPS* | Atende à necessidade de ativistas e cidadãos de registrar evidências fáticas e geoespaciais dos focos de poluição de forma célere em campo. |
+| *5. Envio Anônimo de Denúncias* | Atende à necessidade de proteção, segurança e privacidade do cidadão ao apontar irregularidades ambientais no bairro. |
+| *6. Calculadora de Risco Sazonal e Regional* | Atende à necessidade profilática do usuário asmático de antecipar o risco associado a estações críticas (estiagem/inverno vs. radiação/ozônio no verão). |
+| *7. Orientações e Dicas de Proteção Respiratória* | Atende à necessidade de mitigação prática de crises (fechar janelas, higienização de mucosas, uso de máscara, bombinha preventiva). |
+| *8. Cache e Operação Offline com Sincronização via Wi-Fi* | Atende à necessidade operacional de campo em áreas com sinal celular instável, preservando o plano de dados móveis do usuário. |
+| *9. Exportação de Dados para o Poder Público* | Atende à necessidade de transparência, ciência cidadã e integração institucional com secretarias municipais e prefeituras. |
+
+---
