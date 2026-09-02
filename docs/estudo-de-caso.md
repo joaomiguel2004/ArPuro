@@ -23,7 +23,6 @@ A poluição do ar e da água representa uma das principais causas de internaç�
 ### Qual é a principal necessidade que a solução deverá atender?
 Traduzir métricas ambientais laboratoriais complexas em alertas profiláticos acionáveis para a rotina da população vulnerável, paralelamente à criação de um canal ágil e de baixíssima fricção para mapeamento georreferenciado e denúncia cidadã de passivos ecológicos.
 
-
 ## 2.2. Público e Usuários
  
 ### 1. Pacientes com Doenças Respiratórias Crônicas (Asma e Bronquite)
@@ -49,3 +48,34 @@ Traduzir métricas ambientais laboratoriais complexas em alertas profiláticos a
 * **Relação com o aplicativo:** Consumidores de dados agregados e receptores de dados públicos abertos.
 * **Necessidades:** Ter acesso a relatórios e dados espaciais exportáveis para subsidiar tomadas de decisão, fiscalização sanitária e alocação preventiva de insumos médicos.
 * **Situação de uso:** Em computadores e sistemas administrativos ao analisar relatórios de focos territoriais e curvas de morbidade respiratória sazonal.
+  
+---
+
+  ## 2.3. Contexto de Uso
+
+A análise dos cenários reais de interação revela severas implicações de engenharia móvel:
+
+* *Ambiente e Iluminação:*
+  * Condição: O aplicativo será operado com frequência em ambientes externos (vias públicas, parques, praças e margens de rios sob sol pleno).
+  * Implicações: A interface deve adotar prioritariamente o *modo claro*, tipografia robusta e paleta de alto contraste cromático para evitar que a tela fique ilegível sob reflexo solar.
+* *Momento, Nível de Atenção e Urgência:*
+  * Condição: Usuários em movimento (caminhando) ou em trânsito exigem tomadas de decisão imediatas sem dispersão.
+  * Implicações: A ação principal de notificação de poluição deve ser resolvida em fluxo ultra-rápido (regra dos 3 toques: Abrir > Notificar foco > Tirar foto > Enviar). A tela principal não pode exigir leitura minuciosa de textos, baseando-se no semáforo visual verde/amarelo/vermelho/cinza.
+* *Dispositivo e Hardware:*
+  * Condição: Usuários operando smartphones básicos/de entrada, com sensores limitados e restrição de memória/processamento.
+  * Implicações: A arquitetura do app deve priorizar componentes nativos leves, sem animações pesadas, garantindo inicialização ágil e baixo consumo de bateria ao acionar sensores de Câmera e GPS.
+* *Conectividade:*
+  * Condição: Em margens de córregos e áreas periféricas, o sinal de rede 3G/4G/5G costuma ser instável ou inexistente, e ativistas frequentemente contam com franquias de dados móveis limitadas.
+  * Implicações: A aplicação deve operar em *modo offline* para registro de fotos e coordenadas no banco local (cache). A sincronização pesada de pacotes e mapas deve ser configurada para ocorrer preferencialmente ou exclusivamente quando houver conexão Wi-Fi disponível.
+
+---
+
+## 2.4. Objetivo e Proposta de Valor
+
+*O que o aplicativo pretende oferecer:*  
+Um ecossistema móvel intuitivo composto por um painel de alerta biomédico-ambiental e uma rede colaborativa de monitoramento territorial cidadão.
+
+*Qual benefício proporciona ao usuário:*  
+O ArPuro transforma indicadores poluentes abstratos em ações práticas de preservação à saúde, concedendo previsibilidade e segurança a pessoas asmáticas e portadoras de bronquite, enquanto confere voz ativa e poder de fiscalização anônimo e georreferenciado à cidadania para cobrar o saneamento ambiental de suas comunidades.
+
+---
