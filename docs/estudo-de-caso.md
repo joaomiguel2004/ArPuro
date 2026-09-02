@@ -113,7 +113,6 @@ A análise dos cenários reais de interação revela severas implicações de en
 ---
  
 ## 2.7. Restrições e Condições
- ## 2.7. Restrições e Condições
 
 * **Quantidade de telas:** O protótipo deve ter no máximo 4 telas principais (Semáforo do Dia, Focos de Poluição, Formulário com Foto/GPS e Orientações de Proteção).
 * **Número de interações:** A ação principal (notificar foco) deve ser resolvida em até 3 toques (Abrir > Tocar em "Notificar foco" > Tirar foto > Enviar).
