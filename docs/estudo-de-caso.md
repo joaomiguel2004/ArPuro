@@ -97,29 +97,36 @@ A análise dos cenários reais de interação revela severas implicações de en
 
 ## 2.6. Funcionalidades e Características Já Definidas
 
-| Funcionalidade | Para que serve no dia a dia? |
+| Funcionalidade | Necessidade atendida |
 | :--- | :--- |
-| **1. Semáforo do Dia (Qualidade do ar)** | Permite que quem tem asma ou bronquite bata o olho e saiba na hora se o ar do dia está perigoso ou tranquilo. |
-| **2. Tradução de Índices Técnicos ($MP_{10}$)** | Troca termos científicos difíceis por avisos simples (como *"Ar bom hoje para correr"*). |
-| **3. Mapa Colaborativo de Focos de Poluição** | Mostra em um mapa onde os vizinhos marcaram esgoto a céu aberto, córregos sujos e entulho. |
-| **4. Notificação com Foto e GPS** | Facilita provar o problema com foto e localização exata direto pelo celular. |
-| **5. Envio de Denúncia Anônima** | Protege quem está denunciando para que ninguém sofra perseguição ou constrangimento no bairro. |
-| **6. Calculadora de Risco por Época do Ano** | Avisa com antecedência sobre épocas mais críticas (como meses secos de inverno ou dias de calor extremo). |
-| **7. Dicas de Proteção Respiratória** | Ensina medidas fáceis para evitar crises (usar máscara na rua, fechar janelas de casa em horários de pico). |
-| **8. Uso Offline com Sincronização via Wi-Fi** | Deixa o usuário tirar a foto mesmo sem internet na rua e guarda os dados para enviar só quando achar uma rede Wi-Fi. |
-| **9. Dados Públicos Exportáveis para Prefeituras** | Permite juntar todas as denúncias para cobrar os órgãos públicos com dados reais em mãos. |
+| **Semáforo do dia (qualidade do ar e risco)** | Permite que pessoas com asma e bronquite batam o olho e saibam na hora se o ar está seguro para respirar antes de sair de casa. |
+| **Tradução de índices técnicos ($MP_{10}$)** | Substitui termos e números difíceis por avisos simples do cotidiano (como "Ar bom hoje para correr"), tornando a informação compreensível para qualquer usuário. |
+| **Mapa colaborativo de focos de poluição** | Mostra onde vizinhos e ativistas marcaram problemas na cidade (esgoto a céu aberto, córregos sujos, queimadas e lixo acumulado). |
+| **Formulário de notificação com foto e GPS** | Permite ao cidadão registrar provas em imagem e a localização exata do problema ambiental de forma rápida pelo celular. |
+| **Notificação anônima** | Protege quem faz a denúncia, garantindo segurança e privacidade para que o morador não sofra represálias no bairro. |
+| **Calculadora de risco do ar por época do ano e região** | Ajuda pessoas sensíveis a se prepararem com antecedência para épocas mais críticas (como estiagem ou calor intenso). |
+| **Dicas de proteção respiratória** | Fornece orientações práticas do que fazer na hora (usar máscara, fechar janelas em horários de pico, carregar a bombinha) para evitar crises. |
+| **Formulário de sintomas respiratórios e alerta de pico** | Permite acompanhar tosse e falta de ar, avisando o usuário quando houver subida repentina de poluentes. |
+| **Uso offline com sincronização exclusiva via Wi-Fi** | Permite tirar fotos e salvar pontos mesmo em locais sem sinal de celular, além de não gastar o pacote de dados móveis do usuário. |
+| **Base de dados pública e exportável para prefeituras** | Dá transparência às informações coletadas e permite cobrar melhorias e fiscalização dos órgãos públicos. |
 
 ---
  
 ## 2.7. Restrições e Condições
- 
-* **Limite de Telas:** O aplicativo precisa ter no máximo **4 telas principais** (Semáforo do Dia, Mapa de Poluição, Tela de Denúncia com Foto/GPS e Dicas de Cuidados).
-* **Regra dos 3 Toques:** Fazer uma denúncia não pode demorar mais que 3 toques na tela (Abrir o app > Clicar em Notificar > Tirar a foto e Enviar).
-* **Aparelhos Suportados:** O aplicativo precisa funcionar bem em celulares básicos, sem travar nem fechar sozinho.
-* **Internet e Dados:** Precisa salvar coisas na memória do celular para abrir sem sinal e sincronizar fotos preferencialmente via Wi-Fi.
-* **Privacidade:** Ninguém deve ser obrigado a se identificar para registrar uma denúncia.
-* **Cores e Visibilidade:** O semáforo colorido é obrigatório (verde-limão para ar bom até cinza-escuro para ar muito ruim) e a tela tem que ser legível mesmo sob sol forte.
-* **Sensores Necessários:** O aplicativo precisa de permissão de Câmera e GPS para funcionar direito.
+ ## 2.7. Restrições e Condições
+
+* **Quantidade de telas:** O protótipo deve ter no máximo 4 telas principais (Semáforo do Dia, Focos de Poluição, Formulário com Foto/GPS e Orientações de Proteção).
+* **Número de interações:** A ação principal (notificar foco) deve ser resolvida em até 3 toques (Abrir > Tocar em "Notificar foco" > Tirar foto > Enviar).
+* **Dispositivos:** Deve rodar de forma leve e fluida em smartphones básicos com suporte a geolocalização.
+* **Versão do sistema operacional:** Compatível com versões amplamente distribuídas em aparelhos de entrada, garantindo que recursos nativos funcionem sem exigir as versões mais recentes do sistema.
+* **Tamanho do aplicativo:** O app precisa ser leve e compacto para não sobrecarregar o armazenamento limitado de celulares mais simples.
+* **Privacidade:** O usuário deve ter a opção garantida de registrar notificações de forma totalmente anônima.
+* **Armazenamento:** Precisa permitir o download prévio do mapa de focos na memória interna do aparelho para viabilizar o uso quando não houver conexão.
+* **Conectividade:** Funciona offline para registro de denúncias e restringe a sincronização de dados e mapas exclusivamente ao Wi-Fi para poupar os dados móveis.
+* **Navegação:** Direta, simplificada e sem menus escondidos, facilitando o acesso rápido às 4 telas e garantindo a notificação imediata.
+* **Acessibilidade:** Uso obrigatório do semáforo com cores universais (do verde-limão ao cinza-escuro) e tradução de siglas técnicas para frases do cotidiano que qualquer pessoa consiga entender.
+* **Ambiente de utilização:** Ruas, margens de rios e praças, exigindo foco prioritário em modo claro e alto contraste para garantir leitura fácil sob sol direto.
+* **Outras condições específicas:** Uso obrigatório de recursos de hardware como Câmera e GPS, além do compromisso de gerar dados públicos e exportáveis para prefeituras.
  
 ---
  
