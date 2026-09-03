@@ -53,22 +53,45 @@ Explicar a qualidade do ar de um jeito que qualquer pessoa entenda sem precisar 
   
 ---
 
-  ## 2.3. Contexto de Uso
+ ## 2.3. Contexto de Uso
 
-A análise dos cenários reais de interação revela severas implicações de engenharia móvel:
+A análise dos cenários reais de uso orienta as decisões de desenvolvimento da seguinte forma:
 
-* **Ambiente e Iluminação:**
-  * *Situação:* As pessoas vão usar o app na rua, em praças e perto de córregos, muitas vezes debaixo do sol do meio-dia.
-  * *O que isso muda no app:* O visual tem que priorizar o **modo claro**, com letras legíveis e bastante contraste de cores para ninguém precisar forçar a vista na claridade.
-* **Momento, Atenção e Pressa:**
-  * *Situação:* Quem está andando na rua quer resolver a denúncia rápido para não ficar moscando com o celular na mão.
-  * *O que isso muda no app:* O fluxo de denúncia tem que ser direto ao ponto (regra dos 3 toques: Abrir > Clicar em Notificar > Tirar foto e Enviar). Além disso, a tela inicial precisa mostrar o risco do dia com um semáforo colorido de fácil entendimento.
-* **Aparelhos dos Usuários:**
-  * *Situação:* Muita gente usa celulares simples e mais antigos, com pouca memória e bateria limitada.
-  * *O que isso muda no app:* O aplicativo precisa ser leve, sem travamentos ou telas cheias de firulas, usando a câmera e o GPS sem gastar a bateria inteira.
-* **Internet e Conexão:**
-  * *Situação:* Em fundos de vale e na beira de córregos o sinal de celular costuma ser ruim ou sumir totalmente. Além disso, o pacote de dados móveis do usuário pode acabar.
-  * *O que isso muda no app:* O app precisa **funcionar sem internet (offline)**. O usuário consegue tirar a foto e marcar o ponto no mapa offline, e o app espera o celular conectar ao Wi-Fi para enviar tudo de uma vez sem gastar o 4G da pessoa.
+* **Ambiente:**
+  * *Situação:* Áreas urbanas externas como ruas, calçadas, praças e margens de rios ou córregos.
+  * *O que isso muda no app:* A interface precisa de botões grandes e espaçados para uso confortável enquanto a pessoa se desloca ou caminha em vias públicas.
+
+* **Momento de utilização:**
+  * *Situação:* Logo cedo pela manhã para consulta diária, ou de forma esporádica e pontual no instante em que o usuário flagra uma queimada, lixo ou esgoto.
+  * *O que isso muda no app:* As duas principais tarefas (checar o semáforo e abrir a câmera para notificar) devem estar disponíveis imediatamente na primeira tela.
+
+* **Condições do usuário:**
+  * *Situação:* Pessoas em movimento (caminhando), segurando o celular com apenas uma mão, ou pacientes que já estão com tosse e falta de ar.
+  * *O que isso muda no app:* O botão de notificação deve ser de fácil alcance para o polegar e a navegação não pode exigir esforço físico ou tarefas complexas.
+
+* **Dispositivo:**
+  * *Situação:* Smartphones básicos e intermediários de entrada, com memória limitada e baterias modestas.
+  * *O que isso muda no app:* O código deve ser leve, consumindo pouca memória RAM e acionando o GPS e a câmera de forma otimizada para não travar o aparelho.
+
+* **Conectividade:**
+  * *Situação:* Conexão 3G/4G instável ou inexistente perto de rios e áreas periféricas, além de planos com franquia de dados curta.
+  * *O que isso muda no app:* O aplicativo salva denúncias e dados em modo offline e aguarda uma conexão Wi-Fi para sincronizar as fotos pesadas sem consumir a franquia móvel do usuário.
+
+* **Iluminação:**
+  * *Situação:* Luz solar direta e intensa ao ar livre.
+  * *O que isso muda no app:* Foco obrigatório em modo claro, fontes nítidas e paleta semafórica com alto contraste para permitir leitura mesmo com reflexo do sol na tela.
+
+* **Nível de atenção:**
+  * *Situação:* Atenção dividida e baixa. O usuário está atento ao movimento da rua, ao trânsito ou ao caminho em que está pisando.
+  * *O que isso muda no app:* Informações passadas em símbolos e cores, evitando blocos longos de texto que exijam leitura atenta no meio da rua.
+
+* **Situação de urgência:**
+  * *Situação:* Moderada a alta. O ativista quer bater a foto e guardar o celular rapidamente para não se expor na rua, e o asmático em início de crise precisa saber o que fazer sem perder tempo.
+  * *O que isso muda no app:* Implementação da regra dos 3 toques para registro rápido da denúncia e exibição imediata de dicas de alívio e proteção respiratória.
+
+* **Outras condições específicas:**
+  * *Situação:* Risco de constrangimento ou retaliação ao apontar crimes ambientais praticados no próprio bairro.
+  * *O que isso muda no app:* Garantia de denúncia 100% anônima, sem a necessidade de criação de cadastros obrigatórios ou exibição do nome do autor.
 
 ---
 
