@@ -46,20 +46,32 @@ Plataforma brasileira de tecnologia cívica que conecta cidadãos às prefeitura
 
 ---
 
-## 3. Análise de Diferenciais Competitivos (Oceano Azul)
+### Solução 3: Swim Guide
+Aplicativo voltado para a verificação da qualidade da água e balneabilidade de praias, rios e lagos.
 
-**O que torna o ArPuro único:**
-A maior lacuna do mercado atual é que **dados ambientais são separados da ação cidadã**. O IQAir diz ao usuário que o ar está ruim, mas o usuário não tem como reportar que o ar está ruim porque há um terreno baldio queimando lixo na esquina. O ArPuro resolve isso ao unir a **informação passiva** (o painel semáforo) com a **ação ativa** (o mapa colaborativo de denúncias).
-
-Além disso, o **anonimato** é um trunfo gigante. Em muitas comunidades, denunciar despejo ilegal de esgoto industrial ou lixo pode gerar retaliações por parte de infratores locais ou empresas. O anonimato destrava o volume de denúncias.
+* **Principais funcionalidades:** 
+  * Informação do status da água (própria/imprópria) usando sinalização por cores.
+  * Mapeamento de praias e pontos de água mais próximos via GPS.
+  * Opção para que cidadãos reportem poluição em corpos d'água.
+* **Pontos positivos:** 
+  * Especializado no impacto ambiental e recreativo da qualidade da água.
+  * Identificação visual direta de locais seguros vs. contaminados no mapa.
+* **Pontos negativos:** 
+  * Totalmente isolado do impacto do ar e de doenças respiratórias.
+  * Depende fortemente de dados governamentais que nem sempre são atualizados com frequência em rios e córregos urbanos.
+* **Aspectos de interface/experiência:** 
+  * Navegação baseada em mapas com marcadores em formato de bandeiras (verdes ou vermelhas), facilitando a identificação rápida.
+* **O que pode ser aproveitado ou melhorado:** 
+  * **Aproveitar:** A abordagem de monitoramento hídrico direto no mapa para identificar córregos e rios poluídos.
+  * **Melhorar:** Integrar esses dados hídricos ao impacto do ar, criando uma visão holística da saúde ambiental da cidade.
 
 ---
 
-## 4. Desafios e Recomendações Estratégicas
+## O que nosso aplicativo poderá fazer de diferente ou melhor?
 
-1. **Validação das Denúncias (Efeito Waze):** O maior risco de mapas colaborativos anônimos é o *spam* ou falsas denúncias.
-   * *Ação:* Implemente um sistema de validação pela própria comunidade (ex: botões de "Eu também vi isso" ou "Não está mais aqui", similar ao Waze) ou exija que a foto seja tirada na hora pelo app (sem upload da galeria) para garantir veracidade com os metadados de GPS.
-2. **Gamificação e Retenção:** Usuários saudáveis podem esquecer de abrir o app se a qualidade do ar estiver boa.
-   * *Ação:* Crie um sistema de recompensas ou "karma" cívico para os usuários que mais mapeiam focos de poluição (mesmo sendo anônimos para o público, eles podem ter um ranking interno).
-3. **Fonte dos Dados Base:** O "semáforo" diário precisa de dados confiáveis antes mesmo das denúncias dos usuários.
-   * *Ação:* Integre APIs gratuitas de qualidade do ar e clima (como OpenWeatherMap, Copernicus ou órgãos ambientais locais) para garantir que o app já tenha utilidade no "Dia 1", antes da comunidade começar a gerar fotos.
+O **ArPuro** se diferencia no mercado ao integrar em uma única solução a **inteligência passiva de dados** e a **ação colaborativa cívica**, com foco exclusivo na **saúde respiratória e ambiental**:
+
+1. **Correlação Única entre Ar, Água e Saúde:** Enquanto os concorrentes tratam a qualidade do ar, a poluição da água e a saúde como temas isolados, o ArPuro conecta esses três pilares no mesmo ecossistema.
+2. **Denúncias Anônimas e Georreferenciadas:** Diferente de plataformas cívicas tradicionais (como o Colab), o ArPuro garante o anonimato do cidadão. Isso elimina o receio de retaliações ao reportar focos de poluição, queimadas ilegais ou esgoto a céu aberto.
+3. **Mapeamento Ativo vs. Monitoramento Passivo:** Ao contrário de apps como o IQAir, que se limitam a mostrar a qualidade do ar captada por estações distantes, o ArPuro permite mapear o microclima local e os problemas pontuais de poluição do bairro através de fotos e geolocalização enviadas em tempo real pela própria comunidade.
+4. **Painel Semáforo Integrado à Ação:** O usuário não apenas consulta o risco diário para sua saúde respiratória via semáforo, mas encontra no mesmo aplicativo o mecanismo imediato para notificar e combater a causa raiz daquela poluição.
