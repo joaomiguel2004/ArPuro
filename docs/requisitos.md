@@ -77,3 +77,13 @@
 * **RF11 — Filtragem de Dados:** O sistema deve permitir a filtragem de ocorrências no mapa por tipo de contaminação e intervalo de tempo.
 * **RF12 — Emissão de Alertas Push:** O sistema deve disparar notificações push locais quando o índice do ar atingir o nível Vermelho (Crítico).
 * **RF13 — Busca de Localidades:** O sistema deve permitir que o usuário busque no mapa por endereços ou bairros específicos além de sua localização atual. 
+
+
+### 2.3 Requisitos não funcionais
+
+* *RNF01 — Usabilidade:* O usuário deve conseguir consultar a qualidade do ar da sua região e o painel de semáforo na tela principal em no máximo 1 (uma) interação após abrir o app.
+* *RNF02 — Segurança e privacidade (LGPD):* O aplicativo não deve armazenar metadados identificáveis das fotos capturadas e deve garantir que denúncias anônimas não possuam vínculo com o IP ou ID único do dispositivo no banco de dados.
+* *RNF03 — Desempenho:* O carregamento inicial dos marcadores de denúncias no mapa não deve ultrapassar 3 segundos sob conexões 4G/Wi-Fi convencionais.
+* *RNF04 — Conectividade:* Em caso de ausência de conexão com a internet, o aplicativo deve permitir a captura da denúncia em modo offline e sincronizá-la assim que a conexão for reestabelecida.
+* *RNF05 — Compatibilidade e Dispositivos:* O aplicativo deve ser desenvolvido de forma responsiva para rodar nos sistemas operacionais Android (a partir da versão 8.0) e iOS (a partir da versão 14.0).
+* *RNF06 — Acessibilidade:* As cores do sistema "Semáforo" e dos marcadores do mapa devem acompanhar rotulagem textual e ícones distintos, garantindo a acessibilidade para usuários daltônicos (conformidade com WCAG).
