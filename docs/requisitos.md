@@ -62,6 +62,8 @@
 * *Necessidade do usuário que atende:* Permite que moradores e pesquisadores entendam os problemas recorrentes de uma região específica.
 * *Justificativa:* Fornece inteligência de dados locais para embasar cobranças comunitárias ou ações de órgãos ambientais.
 
+---
+
 ### 2.2 Requisitos funcionais
 
 * **RF01 — Obtenção de Localização:** O sistema deve obter a localização via GPS do dispositivo para carregar os dados de qualidade do ar da região atual.
@@ -78,6 +80,7 @@
 * **RF12 — Emissão de Alertas Push:** O sistema deve disparar notificações push locais quando o índice do ar atingir o nível Vermelho (Crítico).
 * **RF13 — Busca de Localidades:** O sistema deve permitir que o usuário busque no mapa por endereços ou bairros específicos além de sua localização atual. 
 
+---
 
 ### 2.3 Requisitos não funcionais
 
@@ -87,6 +90,8 @@
 * *RNF04 — Conectividade:* Em caso de ausência de conexão com a internet, o aplicativo deve permitir a captura da denúncia em modo offline e sincronizá-la assim que a conexão for reestabelecida.
 * *RNF05 — Compatibilidade e Dispositivos:* O aplicativo deve ser desenvolvido de forma responsiva para rodar nos sistemas operacionais Android (a partir da versão 8.0) e iOS (a partir da versão 14.0).
 * *RNF06 — Acessibilidade:* As cores do sistema "Semáforo" e dos marcadores do mapa devem acompanhar rotulagem textual e ícones distintos, garantindo a acessibilidade para usuários daltônicos (conformidade com WCAG).
+
+---
 
 ### 2.4 CRUD
 
