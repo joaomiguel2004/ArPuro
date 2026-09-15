@@ -61,3 +61,19 @@
 * *Descrição:* Ferramenta de busca e filtragem no mapa para visualizar denúncias por tipo de poluição (Ar, Água, Lixo/Esgoto) ou por período (últimas 24h, última semana).
 * *Necessidade do usuário que atende:* Permite que moradores e pesquisadores entendam os problemas recorrentes de uma região específica.
 * *Justificativa:* Fornece inteligência de dados locais para embasar cobranças comunitárias ou ações de órgãos ambientais.
+
+### 2.2 Requisitos funcionais
+
+* **RF01 — Obtenção de Localização:** O sistema deve obter a localização via GPS do dispositivo para carregar os dados de qualidade do ar da região atual.
+* **RF02 — Exibição do Semáforo:** O sistema deve exibir na tela inicial o painel "Semáforo" com o nível de risco (Verde, Amarelo, Vermelho) e o índice AQI atualizado.
+* **RF03 — Captura de Mídia:** O sistema deve permitir que o usuário tire uma foto diretamente pelo aplicativo para anexar ao registro de denúncia.
+* **RF04 — Registro de Coordenadas:** O sistema deve registrar automaticamente as coordenadas geográficas (latitude e longitude) no momento da criação da denúncia.
+* **RF05 — Categorização de Ocorrências:** O sistema deve disponibilizar um seletor com categorias pré-definidas para a denúncia (Queimada, Córrego Poluído, Esgoto a Céu Aberto, Lixo Acumulado, Outros).
+* **RF06 — Envio Anônimo:** O sistema deve permitir a publicação de denúncias de forma anônima, sem exigir login ou fornecimento de dados pessoais.
+* **RF07 — Exibição de Mapa Interativo:** O sistema deve renderizar um mapa interativo exibindo marcadores personalizados para cada categoria de poluição reportada.
+* **RF08 — Validação por Terceiros:** O sistema deve permitir que usuários próximos a um marcador confirmem a denúncia existente ("Eu também vi isso").
+* **RF09 — Sinalização de Resolução:** O sistema deve permitir que usuários sinalizem a resolução ou inexistência de um ponto de poluição registrado.
+* **RF10 — Exibição de Guias de Saúde:** O sistema deve exibir cards de recomendações de saúde adequados ao nível de risco exibido no painel inicial.
+* **RF11 — Filtragem de Dados:** O sistema deve permitir a filtragem de ocorrências no mapa por tipo de contaminação e intervalo de tempo.
+* **RF12 — Emissão de Alertas Push:** O sistema deve disparar notificações push locais quando o índice do ar atingir o nível Vermelho (Crítico).
+* **RF13 — Busca de Localidades:** O sistema deve permitir que o usuário busque no mapa por endereços ou bairros específicos além de sua localização atual. 
