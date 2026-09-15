@@ -87,3 +87,31 @@
 * *RNF04 — Conectividade:* Em caso de ausência de conexão com a internet, o aplicativo deve permitir a captura da denúncia em modo offline e sincronizá-la assim que a conexão for reestabelecida.
 * *RNF05 — Compatibilidade e Dispositivos:* O aplicativo deve ser desenvolvido de forma responsiva para rodar nos sistemas operacionais Android (a partir da versão 8.0) e iOS (a partir da versão 14.0).
 * *RNF06 — Acessibilidade:* As cores do sistema "Semáforo" e dos marcadores do mapa devem acompanhar rotulagem textual e ícones distintos, garantindo a acessibilidade para usuários daltônicos (conformidade com WCAG).
+
+### 2.4 CRUD
+
+Operações de dados referente à entidade principal **Denúncia de Poluição**:
+
+* **C — Criadas:** **Necessário.** O usuário cria novos registros de focos de poluição enviando foto, localização, categoria e descrição opcional.
+* **R — Consultadas:** **Necessário.** Qualquer cidadão pode consultar e visualizar as denúncias espalhadas no mapa e no feed do aplicativo.
+* **U — Atualizadas:** **Necessário (Parcial/Controlado).** A atualização dos dados ocorre de forma colaborativa: usuários incrementam o contador de confirmações ("Eu também vi isso") ou alteram o status do ponto para "Sinalizado como Resolvido".
+* **D — Excluídas:** **Não aplicável diretamente ao usuário comum.**
+  * *Justificativa:* Para preservar a integridade histórica dos dados e evitar que infratores apaguem denúncias de terceiros, usuários comuns não têm permissão para deletar registros. A exclusão é restrita à moderação interna do sistema quando uma denúncia atinge um limite crítico de sinalizações de spam ou após expiração automática de prazo (30 dias sem novas confirmações).
+
+---
+
+### 2.5 Priorização
+
+* **Essenciais (Indispensáveis para a proposta principal):**
+  * Painel de Risco Respiratório (Semáforo do Ar)
+  * Mapeamento Colaborativo de Focos de Poluição
+  * Captura e Registro com Foto e Geolocalização
+  * Envio de Denúncias com Garantia de Anonimato
+
+* **Importantes (Agregam valor, mas não são fundamentais):**
+  * Validação Comunitária de Denúncias ("Efeito Waze")
+  * Dicas Personalizadas de Saúde e Prevenção
+  * Sistema de Notificações de Alerta de Risco
+
+* **Secundárias (Podem ser desenvolvidas posteriormente):**
+  * Histórico e Filtro de Ocorrências Locais
