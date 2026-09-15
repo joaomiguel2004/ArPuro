@@ -29,3 +29,35 @@
 * **Descrição:** Opção que permite o envio do reporte de poluição sem vincular qualquer Dado Pessoal Identificável (PII), endereço de e-mail ou cadastro obrigatório.
 * **Necessidade do usuário que atende:** Protege o cidadão contra retaliações ao denunciar infrações de empresas, vizinhos ou descartes clandestinos em comunidades.
 * **Justificativa:** Remove a principal barreira de medo do usuário, maximizando o volume e a honestidade das denúncias registradas.
+
+---
+
+#### Funcionalidade 5
+* *Nome:* Validação Comunitária de Denúncias ("Efeito Waze")
+* *Descrição:* Botões de interação no mapa onde outros usuários próximos à ocorrência podem confirmar a veracidade do foco de poluição ("Eu também vi isso") ou indicar que o problema foi resolvido ("Não existe mais").
+* *Necessidade do usuário que atende:* Garante que a comunidade consulte um mapa confiável com dados reais e atualizados por vizinhos.
+* *Justificativa:* Mecanismo indispensável para filtrar spams e falsas denúncias em plataformas colaborativas anônimas.
+
+---
+
+#### Funcionalidade 6
+* *Nome:* Dicas Personalizadas de Saúde e Prevenção
+* *Descrição:* Exibição de cards informativos com orientações práticas de saúde condicionadas ao nível do semáforo do dia e ao perfil do usuário (ex: idosos, praticantes de esportes, pais de crianças).
+* *Necessidade do usuário que atende:* Orienta o usuário sobre ações concretas para mitigar crises respiratórias (ex: "Umidifique o quarto", "Evite exercícios entre 10h e 16h").
+* *Justificativa:* Conecta o indicador ambiental diretamente com o cuidado com a saúde, reforçando a proposta de valor healthtech.
+
+---
+
+#### Funcionalidade 7
+* *Nome:* Sistema de Notificações de Alerta de Risco
+* *Descrição:* Envio de notificações push configuráveis quando a qualidade do ar na região do usuário atingir níveis críticos (Amarelo ou Vermelho).
+* *Necessidade do usuário que atende:* Mantém o usuário protegido sem a necessidade de abrir o aplicativo manualmente todos os dias.
+* *Justificativa:* Aumenta a retenção e o engajamento do usuário, agindo como um tutor passivo de saúde.
+
+---
+
+#### Funcionalidade 8
+* *Nome:* Histórico e Filtro de Ocorrências Locais
+* *Descrição:* Ferramenta de busca e filtragem no mapa para visualizar denúncias por tipo de poluição (Ar, Água, Lixo/Esgoto) ou por período (últimas 24h, última semana).
+* *Necessidade do usuário que atende:* Permite que moradores e pesquisadores entendam os problemas recorrentes de uma região específica.
+* *Justificativa:* Fornece inteligência de dados locais para embasar cobranças comunitárias ou ações de órgãos ambientais.
