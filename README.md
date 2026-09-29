@@ -15,7 +15,7 @@ O ArPuro é um aplicativo que conecta a saúde respiratória à qualidade do ar 
 
 ## Responsabilidade de cada integrante nesta atividade
 * **Manuel Luan Santos Assis:** Definição da personalidade, identidade e experiência, além das funcionalidades e características já definidas; Pesquisa; Requisitos Funcionais.
-* **João Miguel de Jesus Silva Souza:** Descrição do objetivo e da problemática; Personas; Funcionalidades.
+* **João Miguel de Jesus Silva Souza:** Descrição do objetivo e da problemática; Personas; Funcionalidades; Justificativas.
 * **José Victor Pinto Marinho:** Preenchimento dos tópicos Contexto de Uso e Objetivo & Proposta de valor; Benchmark; Funcionalidades.
-* **William Estevam dos Santos Silva:** Pesquisa sobre o público-alvo/usuários; Benchmark; Requisitos Não Funcionais e Apresentação dos Requisitos.
-* **Rian Vinícius Barros de Jesus:** Estabelecimento das restrições & condições do projeto, e elencar os 3 pontos de atenção; Apresentação; CRUD e Priorização.
+* **William Estevam dos Santos Silva:** Pesquisa sobre o público-alvo/usuários; Benchmark; Requisitos Não Funcionais e Apresentação dos Requisitos; Protótipos de Alta e Baixa Fidelidade.
+* **Rian Vinícius Barros de Jesus:** Estabelecimento das restrições & condições do projeto, e elencar os 3 pontos de atenção; Apresentação; CRUD e Priorização; Protótipo de Alta Fidelidade.
