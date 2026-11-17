@@ -43,7 +43,7 @@ class HomeBottomNavBar extends StatelessWidget {
                 children: [
                   Expanded(child: Padding(padding: const EdgeInsets.only(bottom: 12), child: _NavItem(icon: Icons.home_outlined, activeIcon: Icons.home, label: 'Início', isActive: currentIndex == 0, onTap: () => onTap(0)))),
                   Expanded(child: Padding(padding: const EdgeInsets.only(bottom: 12), child: _NavItem(icon: Icons.map_outlined, activeIcon: Icons.map, label: 'Mapa', isActive: currentIndex == 1, onTap: () => onTap(1)))),
-                  Padding(padding: const EdgeInsets.only(bottom: 8), child: _CameraFab(onTap: () => onTap(2))),
+                  Padding(padding: const EdgeInsets.only(bottom: 8), child: _CameraFab(isActive: currentIndex == 2, onTap: () => onTap(2))),
                   Expanded(child: Padding(padding: const EdgeInsets.only(bottom: 12), child: _NavItem(icon: Icons.shield_outlined, activeIcon: Icons.shield, label: 'Saúde', isActive: currentIndex == 3, onTap: () => onTap(3)))),
                 ],
               ),
@@ -82,8 +82,9 @@ class _NavItem extends StatelessWidget {
 }
 
 class _CameraFab extends StatelessWidget {
+  final bool isActive;
   final VoidCallback onTap;
-  const _CameraFab({required this.onTap});
+  const _CameraFab({required this.isActive, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +99,17 @@ class _CameraFab extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.textMain,
               borderRadius: BorderRadius.circular(18),
-              boxShadow: [BoxShadow(color: AppColors.darkSlate.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10))],
+              border: isActive
+                  ? Border.all(color: AppColors.primary, width: 2)
+                  : null,
+              boxShadow: [
+                BoxShadow(
+                  color: (isActive ? AppColors.primary : AppColors.darkSlate)
+                      .withValues(alpha: 0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
             ),
             child: Transform.rotate(
               angle: -0.785398,
