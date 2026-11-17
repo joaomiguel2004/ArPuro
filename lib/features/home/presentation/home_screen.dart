@@ -9,6 +9,9 @@ import '../widgets/bottom_nav_bar.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../index_info/presentation/index_info_screen.dart';
 import '../../health/presentation/health_screen.dart';
+import '../../map/presentation/map_screen.dart';
+import '../../report/domain/report_models.dart';
+import '../../report/presentation/new_report_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,33 +23,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentNavIndex = 0;
   final bool _isSynced = true;
+  final List<MapReport> _mapReports = List.of(MapScreen.defaultMapReports);
 
   void _onNavTap(int index) {
-    if (index == 2) {
-      _showComingSoon('Câmera / Formulário');
-      return;
-    }
-    if (index == 1) {
-      _showComingSoon('Mapa');
-      return;
-    }
     if (index == _currentNavIndex) return;
-
-    if (index == 0 || index == 3) {
-      setState(() => _currentNavIndex = index);
-    }
+    setState(() => _currentNavIndex = index);
   }
 
-  void _showComingSoon(String feature) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$feature — em breve!'),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        duration: const Duration(seconds: 2),
-        backgroundColor: AppColors.darkSlate,
-      ),
-    );
+  void _handleReportSubmitted(MapReport report) {
+    setState(() {
+      _mapReports.add(report);
+      _currentNavIndex = 1;
+    });
   }
 
   void _openProfile() {
@@ -74,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           clipBehavior: Clip.none,
           children: [
             IndexedStack(
-              index: _currentNavIndex == 3 ? 1 : 0,
+              index: _currentNavIndex,
               children: [
                 Column(
                   children: [
@@ -104,6 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
+                MapScreen(reports: _mapReports),
+                NewReportScreen(onReportSubmitted: _handleReportSubmitted),
                 const HealthScreen(),
               ],
             ),
