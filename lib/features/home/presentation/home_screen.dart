@@ -8,6 +8,7 @@ import '../widgets/health_card.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../index_info/presentation/index_info_screen.dart';
+import '../../health/presentation/health_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final int _currentNavIndex = 0;
+  int _currentNavIndex = 0;
   final bool _isSynced = true;
 
   void _onNavTap(int index) {
@@ -25,11 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
       _showComingSoon('Câmera / Formulário');
       return;
     }
+    if (index == 1) {
+      _showComingSoon('Mapa');
+      return;
+    }
     if (index == _currentNavIndex) return;
-    if (index == 0) return;
 
-    final labels = {1: 'Mapa', 3: 'Saúde'};
-    _showComingSoon(labels[index] ?? 'Tela');
+    if (index == 0 || index == 3) {
+      setState(() => _currentNavIndex = index);
+    }
   }
 
   void _showComingSoon(String feature) {
@@ -68,32 +73,38 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            Column(
+            IndexedStack(
+              index: _currentNavIndex == 3 ? 1 : 0,
               children: [
-                DynamicIslandBar(isSynced: _isSynced),
-                HomeHeader(onProfileTap: _openProfile),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 110),
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        AqiWidget(
-                          aqiValue: 25,
-                          classification: 'Qualidade Boa',
-                          description:
-                              'Ar limpo hoje. Seguro para todos os grupos sensíveis.',
-                          onInfoTap: _openIndexInfo,
+                Column(
+                  children: [
+                    DynamicIslandBar(isSynced: _isSynced),
+                    HomeHeader(onProfileTap: _openProfile),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(24, 0, 24, 110),
+                        physics: const BouncingScrollPhysics(),
+                        child: Column(
+                          children: [
+                            AqiWidget(
+                              aqiValue: 25,
+                              classification: 'Qualidade Boa',
+                              description:
+                                  'Ar limpo hoje. Seguro para todos os grupos sensíveis.',
+                              onInfoTap: _openIndexInfo,
+                            ),
+                            const HealthCard(
+                              title: 'Risco Respiratório Baixo',
+                              description:
+                                  'Sem restrições para asmáticos nas próximas 6 horas.',
+                            ),
+                          ],
                         ),
-                        const HealthCard(
-                          title: 'Risco Respiratório Baixo',
-                          description:
-                              'Sem restrições para asmáticos nas próximas 6 horas.',
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                const HealthScreen(),
               ],
             ),
             Positioned(
