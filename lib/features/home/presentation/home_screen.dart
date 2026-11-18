@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _mapReports.add(report);
       _capturedPhoto = null;
-      _currentNavIndex = 1;
+      _currentNavIndex = 0;
     });
   }
 

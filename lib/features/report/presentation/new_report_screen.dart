@@ -4,18 +4,26 @@ import '../../camera/domain/captured_photo.dart';
 import '../domain/report_models.dart';
 import '../widgets/anonymous_toggle_card.dart';
 import '../widgets/category_selector.dart';
+import '../widgets/offline_warning_banner.dart';
 import '../widgets/photo_preview_card.dart';
+import '../widgets/report_success_dialog.dart';
 
 class NewReportScreen extends StatefulWidget {
   final CapturedPhoto? photo;
   final VoidCallback? onRetake;
   final ValueChanged<MapReport>? onReportSubmitted;
 
+  /// Exibe o estado offline (pill "Offline" + aviso de envio posterior).
+  /// Ainda não está ligado a uma detecção real de conectividade nem a uma
+  /// fila local, pois o projeto não tem backend.
+  final bool isOffline;
+
   const NewReportScreen({
     super.key,
     this.photo,
     this.onRetake,
     this.onReportSubmitted,
+    this.isOffline = false,
   });
 
   @override
@@ -26,7 +34,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
   ReportCategory _selectedCategory = ReportCategory.queimada;
   bool _isAnonymous = true;
 
-  void _handleSubmit() {
+  Future<void> _handleSubmit() async {
     final report = MapReport(
       id: 'user-${DateTime.now().millisecondsSinceEpoch}',
       category: _selectedCategory,
@@ -41,26 +49,17 @@ class _NewReportScreenState extends State<NewReportScreen> {
       hasPlume: _selectedCategory == ReportCategory.queimada,
     );
 
-    widget.onReportSubmitted?.call(report);
+    await ReportSuccessDialog.show(context);
+    if (!mounted) return;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Denúncia de ${_selectedCategory.label} enviada para a comunidade!',
-        ),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        backgroundColor: AppColors.primaryDark,
-        duration: const Duration(seconds: 2),
-      ),
-    );
+    widget.onReportSubmitted?.call(report);
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const _LocationAttachedPill(),
+        widget.isOffline ? const _OfflinePill() : const _LocationAttachedPill(),
         Expanded(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(24, 16, 24, 120),
@@ -87,6 +86,10 @@ class _NewReportScreenState extends State<NewReportScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                if (widget.isOffline) ...[
+                  const OfflineWarningBanner(),
+                  const SizedBox(height: 16),
+                ],
                 PhotoPreviewCard(
                   photo: widget.photo,
                   onRetake: () => widget.onRetake?.call(),
@@ -132,6 +135,44 @@ class _NewReportScreenState extends State<NewReportScreen> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _OfflinePill extends StatelessWidget {
+  const _OfflinePill();
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+        margin: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.cloud_off_outlined,
+              size: 14,
+              color: AppColors.warning,
+            ),
+            SizedBox(width: 6),
+            Text(
+              'Offline',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
