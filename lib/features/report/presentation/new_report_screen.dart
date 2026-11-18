@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../camera/domain/captured_photo.dart';
 import '../domain/report_models.dart';
 import '../widgets/anonymous_toggle_card.dart';
 import '../widgets/category_selector.dart';
 import '../widgets/photo_preview_card.dart';
 
 class NewReportScreen extends StatefulWidget {
+  final CapturedPhoto? photo;
+  final VoidCallback? onRetake;
   final ValueChanged<MapReport>? onReportSubmitted;
 
   const NewReportScreen({
     super.key,
+    this.photo,
+    this.onRetake,
     this.onReportSubmitted,
   });
 
@@ -20,11 +25,6 @@ class NewReportScreen extends StatefulWidget {
 class _NewReportScreenState extends State<NewReportScreen> {
   ReportCategory _selectedCategory = ReportCategory.queimada;
   bool _isAnonymous = true;
-  bool _hasCapturedPhoto = false;
-
-  void _handleRetake() {
-    setState(() => _hasCapturedPhoto = !_hasCapturedPhoto);
-  }
 
   void _handleSubmit() {
     final report = MapReport(
@@ -88,8 +88,8 @@ class _NewReportScreenState extends State<NewReportScreen> {
                 ),
                 const SizedBox(height: 20),
                 PhotoPreviewCard(
-                  hasCapturedPhoto: _hasCapturedPhoto,
-                  onRetake: _handleRetake,
+                  photo: widget.photo,
+                  onRetake: () => widget.onRetake?.call(),
                 ),
                 const SizedBox(height: 22),
                 CategorySelector(
