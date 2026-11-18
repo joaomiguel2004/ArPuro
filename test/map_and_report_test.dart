@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:camera/camera.dart' show XFile;
 import 'package:arpuro/features/home/presentation/home_screen.dart';
+import 'package:arpuro/features/camera/domain/captured_photo.dart';
 
 void main() {
   testWidgets('Navigates to Mapa tab, filters occurrences, and opens report detail',
@@ -44,17 +46,31 @@ void main() {
     await tester.pumpAndSettle();
   });
 
-  testWidgets('Navigates to Nova Denúncia via camera FAB, selects category, toggles anonymous, and submits',
+  testWidgets('Opens camera via FAB, receives photo, selects category, toggles anonymous, and submits',
       (WidgetTester tester) async {
+    var cameraOpenCount = 0;
+    final fakePhoto = CapturedPhoto(
+      file: XFile('fake/photo.jpg'),
+      capturedAt: DateTime.now(),
+      latitude: -10.9472,
+      longitude: -37.0731,
+    );
+
     await tester.pumpWidget(
-      const MaterialApp(
-        home: HomeScreen(),
+      MaterialApp(
+        home: HomeScreen(
+          openCamera: (_) async {
+            cameraOpenCount++;
+            return fakePhoto;
+          },
+        ),
       ),
     );
 
-    // Tap camera FAB
+    // Tap camera FAB -> camera returns the photo -> Nova Denúncia
     await tester.tap(find.byIcon(Icons.camera_alt_outlined));
     await tester.pumpAndSettle();
+    expect(cameraOpenCount, 1);
 
     expect(find.text('Localização Anexada'), findsOneWidget);
     expect(find.text('Nova Denúncia'), findsOneWidget);
@@ -64,10 +80,11 @@ void main() {
     expect(find.text('Denúncia Anônima'), findsOneWidget);
     expect(find.text('Sua identidade está oculta'), findsOneWidget);
 
-    // Tap Refazer
+    // Refazer reopens the camera
     await tester.tap(find.text('Refazer'));
-    await tester.pump();
-    expect(find.text('Foto capturada'), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(cameraOpenCount, 2);
+    expect(find.text('Nova Denúncia'), findsOneWidget);
 
     // Select Lixo / Entulho
     await tester.tap(find.text('Lixo / Entulho'));

@@ -1,70 +1,48 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../camera/domain/captured_photo.dart';
+import '../../camera/widgets/captured_photo_image.dart';
 
 class PhotoPreviewCard extends StatelessWidget {
-  final bool hasCapturedPhoto;
-  final String coordinates;
-  final String timeText;
+  final CapturedPhoto? photo;
   final VoidCallback onRetake;
 
   const PhotoPreviewCard({
     super.key,
-    required this.hasCapturedPhoto,
-    this.coordinates = '10.9472° S, 37.0731° W',
-    this.timeText = '09:32 (Agora)',
+    required this.photo,
     required this.onRetake,
   });
 
   @override
   Widget build(BuildContext context) {
+    final photo = this.photo;
+    final coordinates = photo?.coordinatesLabel ?? '—';
+    final timeText = photo?.timeLabel() ?? '—';
+
     return Container(
       height: 214,
       width: double.infinity,
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: const Color(0xFFE7EDF4),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppColors.surfaceBorder),
-        gradient: hasCapturedPhoto
-            ? const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFDDE7F0),
-                  Color(0xFFC5D5E4),
-                ],
-              )
-            : null,
       ),
       child: Stack(
         children: [
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  hasCapturedPhoto
-                      ? Icons.photo_camera_back_outlined
-                      : Icons.image_outlined,
+          if (photo != null)
+            Positioned.fill(child: CapturedPhotoImage(file: photo.file))
+          else
+            const Center(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 36),
+                child: Icon(
+                  Icons.image_outlined,
                   size: 46,
-                  color: hasCapturedPhoto
-                      ? AppColors.primary
-                      : AppColors.textLight,
+                  color: AppColors.textLight,
                 ),
-                if (hasCapturedPhoto) ...[
-                  const SizedBox(height: 6),
-                  const Text(
-                    'Foto capturada',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryDark,
-                    ),
-                  ),
-                ],
-                const SizedBox(height: 36),
-              ],
+              ),
             ),
-          ),
           Positioned(
             top: 14,
             right: 14,

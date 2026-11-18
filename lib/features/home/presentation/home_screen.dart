@@ -10,11 +10,16 @@ import '../../profile/presentation/profile_screen.dart';
 import '../../index_info/presentation/index_info_screen.dart';
 import '../../health/presentation/health_screen.dart';
 import '../../map/presentation/map_screen.dart';
+import '../../camera/domain/captured_photo.dart';
+import '../../camera/presentation/camera_screen.dart';
 import '../../report/domain/report_models.dart';
 import '../../report/presentation/new_report_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  /// Abre a câmera e devolve a foto capturada. Substituível nos testes.
+  final Future<CapturedPhoto?> Function(BuildContext context) openCamera;
+
+  const HomeScreen({super.key, this.openCamera = CameraScreen.open});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -24,15 +29,30 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentNavIndex = 0;
   final bool _isSynced = true;
   final List<MapReport> _mapReports = List.of(MapScreen.defaultMapReports);
+  CapturedPhoto? _capturedPhoto;
 
   void _onNavTap(int index) {
+    if (index == 2) {
+      _openCamera();
+      return;
+    }
     if (index == _currentNavIndex) return;
     setState(() => _currentNavIndex = index);
+  }
+
+  Future<void> _openCamera() async {
+    final photo = await widget.openCamera(context);
+    if (photo == null || !mounted) return;
+    setState(() {
+      _capturedPhoto = photo;
+      _currentNavIndex = 2;
+    });
   }
 
   void _handleReportSubmitted(MapReport report) {
     setState(() {
       _mapReports.add(report);
+      _capturedPhoto = null;
       _currentNavIndex = 1;
     });
   }
@@ -93,7 +113,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 MapScreen(reports: _mapReports),
-                NewReportScreen(onReportSubmitted: _handleReportSubmitted),
+                NewReportScreen(
+                  photo: _capturedPhoto,
+                  onRetake: _openCamera,
+                  onReportSubmitted: _handleReportSubmitted,
+                ),
                 const HealthScreen(),
               ],
             ),
