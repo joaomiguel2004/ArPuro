@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:camera/camera.dart' show XFile;
 import 'package:arpuro/features/home/presentation/home_screen.dart';
 import 'package:arpuro/features/camera/domain/captured_photo.dart';
+import 'package:arpuro/features/report/presentation/new_report_screen.dart';
 
 void main() {
   testWidgets('Navigates to Mapa tab, filters occurrences, and opens report detail',
@@ -102,11 +103,32 @@ void main() {
     await tester.tap(find.text('Enviar para a Comunidade'));
     await tester.pumpAndSettle();
 
-    // Confirmation snackbar and navigated to Mapa
+    // Success dialog with XP progress
+    expect(find.text('Alerta Registrado!'), findsOneWidget);
+    expect(find.text('NÍVEL 3: GUARDIÃO'), findsOneWidget);
+    expect(find.text('+50 XP'), findsOneWidget);
+    expect(find.text('800 / 1000 XP'), findsOneWidget);
+
+    // Back to Início tab
+    await tester.tap(find.text('Voltar ao Início'));
+    await tester.pumpAndSettle();
+    expect(find.text('Alerta Registrado!'), findsNothing);
+    expect(find.text('Qualidade Boa'), findsOneWidget);
+  });
+
+  testWidgets('Nova Denúncia shows offline pill and warning when offline',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(body: NewReportScreen(isOffline: true)),
+      ),
+    );
+
+    expect(find.text('Offline'), findsOneWidget);
+    expect(find.text('Localização Anexada'), findsNothing);
     expect(
-      find.text('Denúncia de Lixo / Entulho enviada para a comunidade!'),
+      find.textContaining('Sem conexão de internet no momento.'),
       findsOneWidget,
     );
-    expect(find.text('Buscar região ou bairro...'), findsOneWidget);
   });
 }
