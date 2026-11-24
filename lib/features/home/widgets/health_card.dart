@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/theme/app_colors.dart';
 
 class HealthCard extends StatelessWidget {
   final String title;
   final String description;
   final IconData icon;
+  final Color accentColor;
+  final Color iconBackgroundColor;
 
   const HealthCard({
     super.key,
     this.title = 'Risco Respiratório Baixo',
     this.description = 'Sem restrições para asmáticos nas próximas 6 horas.',
     this.icon = Icons.show_chart,
+    this.accentColor = AppColors.primary,
+    this.iconBackgroundColor = AppColors.greenBg,
   });
 
   @override
@@ -35,10 +40,10 @@ class HealthCard extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: AppColors.greenBg,
+              color: iconBackgroundColor,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, size: 24, color: AppColors.primary),
+            child: Icon(icon, size: 24, color: accentColor),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -47,10 +52,10 @@ class HealthCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.primaryDark,
+                    color: accentColor,
                   ),
                 ),
                 const SizedBox(height: 2),

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class DynamicIslandBar extends StatelessWidget {
   final bool isSynced;
+  final String? statusText;
 
-  const DynamicIslandBar({super.key, this.isSynced = true});
+  const DynamicIslandBar({super.key, this.isSynced = true, this.statusText});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class DynamicIslandBar extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              isSynced ? 'Sincronizado' : 'Modo Offline',
+              statusText ?? (isSynced ? 'Sincronizado' : 'Modo Offline'),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 11,
