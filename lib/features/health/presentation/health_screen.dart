@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../core/theme/app_colors.dart';
+import '../../home/domain/air_quality.dart';
+import '../../home/presentation/home_providers.dart';
 import '../widgets/breathing_checkin_card.dart';
 import '../widgets/seasonal_alert_card.dart';
 import '../widgets/seasonal_forecast_sheet.dart';
 
-class HealthScreen extends StatelessWidget {
+class HealthScreen extends ConsumerWidget {
   const HealthScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final airQualityState = ref.watch(homeAirQualityProvider);
+    final reading = airQualityState.asData?.value;
+    final statusLabel = reading == null
+        ? (airQualityState.hasError ? 'Dados indisponíveis' : 'Atualizando')
+        : reading.isStale
+        ? 'Desatualizado'
+        : 'Atualizado às ${_formatTime(reading.observedAt)}';
+
     return Column(
       children: [
-        const _HealthStatusPill(),
+        _HealthStatusPill(
+          label: statusLabel,
+          isStale: reading?.isStale ?? false,
+        ),
         Expanded(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(24, 16, 24, 110),
@@ -30,7 +45,7 @@ class HealthScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 const Text(
-                  'Orientações baseadas no ar de hoje.',
+                  'Orientações baseadas no índice atual e tendências sazonais.',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -38,7 +53,7 @@ class HealthScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const _CleanAirBanner(),
+                _AirQualityBanner(state: airQualityState),
                 const SizedBox(height: 16),
                 const BreathingCheckinCard(),
                 const SizedBox(height: 16),
@@ -55,19 +70,23 @@ class HealthScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const _RecommendationCard(
-                  icon: Icons.wb_sunny_outlined,
-                  title: 'Atividades Externas',
-                  description:
-                      'Excelente momento para caminhadas e esportes ao ar livre. Temperatura amena.',
-                ),
-                const SizedBox(height: 12),
-                const _RecommendationCard(
-                  icon: Icons.water_drop_outlined,
-                  title: 'Atenção à Hidratação',
-                  description:
-                      'A umidade está em 42% (tempo seco). Beba água com frequência ao longo do dia.',
-                ),
+                if (reading == null)
+                  const _RecommendationCard(
+                    icon: Icons.info_outline,
+                    title: 'Recomendações indisponíveis',
+                    description: 'Elas serão exibidas quando o backend retornar o índice de qualidade do ar.',
+                  )
+                else
+                  for (var i = 0; i < reading.recommendations.length; i++) ...[
+                    if (i > 0) const SizedBox(height: 12),
+                    _RecommendationCard(
+                      icon: _recommendationIcon(
+                        reading.recommendations[i].category,
+                      ),
+                      title: reading.recommendations[i].title,
+                      description: reading.recommendations[i].description,
+                    ),
+                  ],
               ],
             ),
           ),
@@ -75,10 +94,25 @@ class HealthScreen extends StatelessWidget {
       ],
     );
   }
+
+  static String _formatTime(DateTime value) {
+    final local = value.toLocal();
+    return '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
+  }
+
+  static IconData _recommendationIcon(String category) => switch (category) {
+    'activity' => Icons.directions_run,
+    'sensitive_groups' => Icons.health_and_safety_outlined,
+    'pollutant' => Icons.air,
+    _ => Icons.info_outline,
+  };
 }
 
 class _HealthStatusPill extends StatelessWidget {
-  const _HealthStatusPill();
+  final String label;
+  final bool isStale;
+
+  const _HealthStatusPill({required this.label, required this.isStale});
 
   @override
   Widget build(BuildContext context) {
@@ -91,14 +125,20 @@ class _HealthStatusPill extends StatelessWidget {
           color: Colors.black,
           borderRadius: BorderRadius.circular(24),
         ),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.check, size: 14, color: Color(0xFF10B981)),
-            SizedBox(width: 6),
+            Icon(
+              isStale ? Icons.warning_amber_rounded : Icons.check,
+              size: 14,
+              color: isStale
+                  ? const Color(0xFFFBBF24)
+                  : const Color(0xFF10B981),
+            ),
+            const SizedBox(width: 6),
             Text(
-              'Atualizado agora',
-              style: TextStyle(
+              label,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -111,17 +151,59 @@ class _HealthStatusPill extends StatelessWidget {
   }
 }
 
-class _CleanAirBanner extends StatelessWidget {
-  const _CleanAirBanner();
+class _AirQualityBanner extends StatelessWidget {
+  final AsyncValue<HomeAirQuality> state;
+
+  const _AirQualityBanner({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
+    return state.when(
+      data: (reading) => _StatusBanner(
+        color: Color(reading.risk.colorValue),
+        backgroundColor: Color(reading.risk.backgroundColorValue),
+        title: 'Qualidade do ar ${reading.band.label}',
+        description:
+            '${reading.qualityDescription} IQAr ${reading.index}; poluente de maior subíndice: ${reading.dominantPollutant}.${reading.isStale ? ' Dados desatualizados.' : ''}',
+      ),
+      loading: () => const _StatusBanner(
+        color: AppColors.textMuted,
+        backgroundColor: AppColors.subtleBg,
+        title: 'Carregando qualidade do ar',
+        description: 'As recomendações serão atualizadas com o IQAr atual.',
+      ),
+      error: (error, stackTrace) => const _StatusBanner(
+        color: AppColors.textMuted,
+        backgroundColor: AppColors.subtleBg,
+        title: 'Qualidade do ar indisponível',
+        description:
+            'Não foi possível obter dados para orientar as atividades de hoje.',
+      ),
+    );
+  }
+}
+
+class _StatusBanner extends StatelessWidget {
+  final Color color;
+  final Color backgroundColor;
+  final String title;
+  final String description;
+
+  const _StatusBanner({
+    required this.color,
+    required this.backgroundColor,
+    required this.title,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.greenBg,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFD1FAE5)),
+        border: Border.all(color: color.withValues(alpha: 0.18)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,33 +215,25 @@ class _CleanAirBanner extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(14),
             ),
-            child: const Icon(
-              Icons.show_chart,
-              size: 24,
-              color: AppColors.primary,
-            ),
+            child: Icon(Icons.air, size: 24, color: color),
           ),
           const SizedBox(width: 16),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ar Limpo & Seguro',
+                  title,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.primaryDark,
+                    color: color,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
-                  'Nenhuma restrição para asmáticos e idosos nas próximas 6 horas.',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: AppColors.primaryDark,
-                    height: 1.4,
-                  ),
+                  description,
+                  style: TextStyle(fontSize: 13, color: color, height: 1.4),
                 ),
               ],
             ),

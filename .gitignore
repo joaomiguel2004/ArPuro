@@ -30,6 +30,11 @@ migrate_working_dir/
 .pub/
 build/
 /build/
+functions/lib/
+functions/node_modules/
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
 
 # Android Studio will create this file on each build.
 android/**/gradle-wrapper.jar
