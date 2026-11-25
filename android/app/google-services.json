@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "249297453737",
+    "project_id": "arpuro-app",
+    "storage_bucket": "arpuro-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249297453737:android:bdc643bff98750b0959fb8",
+        "android_client_info": {
+          "package_name": "com.example.arpuro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5aPM7IpOsyM6aY4Ep-_mjeIHQmE-yvYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
