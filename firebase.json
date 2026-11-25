@@ -23,5 +23,25 @@
     "ui": {
       "enabled": true
     }
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "arpuro-app",
+          "appId": "1:249297453737:android:bdc643bff98750b0959fb8",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "arpuro-app",
+          "configurations": {
+            "android": "1:249297453737:android:bdc643bff98750b0959fb8",
+            "web": "1:249297453737:web:fc7921f3c9223347959fb8"
+          }
+        }
+      }
+    }
   }
 }
