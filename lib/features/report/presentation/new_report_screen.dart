@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../core/theme/app_colors.dart';
 import '../../camera/domain/captured_photo.dart';
+import '../../profile/presentation/profile_providers.dart';
 import '../domain/report_models.dart';
 import '../widgets/anonymous_toggle_card.dart';
 import '../widgets/category_selector.dart';
@@ -8,7 +11,7 @@ import '../widgets/offline_warning_banner.dart';
 import '../widgets/photo_preview_card.dart';
 import '../widgets/report_success_dialog.dart';
 
-class NewReportScreen extends StatefulWidget {
+class NewReportScreen extends ConsumerStatefulWidget {
   final CapturedPhoto? photo;
   final VoidCallback? onRetake;
   final ValueChanged<MapReport>? onReportSubmitted;
@@ -27,10 +30,10 @@ class NewReportScreen extends StatefulWidget {
   });
 
   @override
-  State<NewReportScreen> createState() => _NewReportScreenState();
+  ConsumerState<NewReportScreen> createState() => _NewReportScreenState();
 }
 
-class _NewReportScreenState extends State<NewReportScreen> {
+class _NewReportScreenState extends ConsumerState<NewReportScreen> {
   ReportCategory _selectedCategory = ReportCategory.queimada;
   bool _isAnonymous = true;
 
@@ -49,7 +52,10 @@ class _NewReportScreenState extends State<NewReportScreen> {
       hasPlume: _selectedCategory == ReportCategory.queimada,
     );
 
-    await ReportSuccessDialog.show(context);
+    final gain = await ref.read(userProfileProvider.notifier).registerReport();
+    if (!mounted) return;
+
+    await ReportSuccessDialog.show(context, gain: gain);
     if (!mounted) return;
 
     widget.onReportSubmitted?.call(report);
@@ -156,11 +162,7 @@ class _OfflinePill extends StatelessWidget {
         child: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.cloud_off_outlined,
-              size: 14,
-              color: AppColors.warning,
-            ),
+            Icon(Icons.cloud_off_outlined, size: 14, color: AppColors.warning),
             SizedBox(width: 6),
             Text(
               'Offline',

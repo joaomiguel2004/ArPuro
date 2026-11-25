@@ -8,7 +8,7 @@ A IA foi usada como **ferramenta de apoio**. Todo código gerado foi testado no 
 
 ## 1. Onde a IA foi usada
 
-O código da aplicação foi produzido com apoio de IA na sprint de **17/11**. A tabela relaciona cada commit ao que foi gerado.
+O código da aplicação foi produzido com apoio de IA nas sprints de **17/11** e **24/11**. A tabela relaciona cada commit ao que foi gerado.
 
 | Commit | Integrante | Ferramenta | O que foi gerado com IA |
 | :---: | :--- | :--- | :--- |
@@ -17,6 +17,7 @@ O código da aplicação foi produzido com apoio de IA na sprint de **17/11**. A
 | `ae986a7` | José Victor | GitHub Copilot & Claude Code | Tela de Mapa (marcadores, filtros, busca, detalhe do foco) e tela Nova Denúncia (categoria, anonimato, pré-visualização) |
 | `9b27f4f` / `b9eebc5` | Rian Vinícius | Claude Code | Tela de câmera em tela cheia, captura de GPS e horário, integração da foto com a Nova Denúncia; correção do build Android |
 | `1b21cf1` | Manuel Luan | Claude Code | Modal de sucesso com XP após o envio e estado offline da Nova Denúncia |
+| Sprint 3 | João Miguel | Claude Code | Autenticação anônima na splash, perfil local com XP e nível (`shared_preferences`), cache do último índice com timeout de 10 s e correção dos testes para rodar sem rede, GPS e Firebase |
 
 Fora do código, a IA também apoiou a revisão de textos da documentação. Os diagramas de 10/11 (casos de uso, classes, banco de dados, mapeamento Dart e fluxograma) foram feitos pelo grupo, sem IA.
 
@@ -99,10 +100,11 @@ Pedir a causa antes da correção evitou que a IA saísse alterando arquivos ale
 | 1 | O primeiro commit subiu arquivos gerados automaticamente e específicos da máquina (`ios/Flutter/ephemeral/`, `Generated.xcconfig` com caminhos `C:\Users\...`, `gradle-wrapper.jar`) e o `.gitignore` sugerido ignorava o `pubspec.lock`. | Os colegas não conseguiam rodar o projeto depois do `git pull`: faltavam arquivos do Android e as versões dos pacotes variavam entre as máquinas. | `.gitignore` substituído pelo padrão do Flutter, `pubspec.lock` passou a ser versionado e os arquivos de plataforma foram recriados. | `27fa7da` |
 | 2 | O projeto Android gerado usava a **embedding v1**, removida nas versões atuais do Flutter, e o build falhava. | Erro no `flutter run` informando o uso da embedding v1 descontinuada. | Pasta `android/` recriada com `flutter create --platforms=android .`, com `MainActivity` estendendo `io.flutter.embedding.android.FlutterActivity` e Gradle em Kotlin DSL (`.kts`). | `27fa7da` |
 | 3 | A IA sugeriu o pacote `camera` na versão `0.11.x`, que puxa o `camera_android_camerax 0.6.30`. Essa versão não compila em JDKs recentes (`class file for androidx.concurrent.futures.CallbackToFutureAdapter not found`). | O build Android quebrou logo após a integração da câmera. | Leitura do changelog do pacote e atualização para `camera ^0.12.2`, que traz o `camera_android_camerax 0.7.6+1` com a correção. | `b9eebc5` |
-| 4 | A IA gerou as dependências do Firebase no `pubspec.yaml`, mas não a configuração (`firebase_options.dart`, `google-services.json`). Com `Firebase.initializeApp()` ativo, o app fechava ao abrir. | Tela branca e exceção `[core/no-app]` no primeiro teste. | Inicialização comentada em `main.dart` até a configuração com `flutterfire configure`, prevista para a Sprint 3. | `27fa7da` (pendente) |
+| 4 | A IA gerou as dependências do Firebase no `pubspec.yaml`, mas não a configuração (`firebase_options.dart`, `google-services.json`). Com `Firebase.initializeApp()` ativo, o app fechava ao abrir. | Tela branca e exceção `[core/no-app]` no primeiro teste. | Configuração feita com `flutterfire configure` (gera `firebase_options.dart` e `google-services.json`) e inicialização reativada com `DefaultFirebaseOptions.currentPlatform`. | `3f96c74` |
 | 5 | O mapa gerado pelo Copilot é um **mapa simulado** desenhado com `CustomPaint`, e não o Google Maps exigido pelo aditivo. As posições dos marcadores são proporções da tela, não coordenadas reais. | Revisão do código comparando com o aditivo da Unidade II. | Mantido como protótipo navegável. A troca por `google_maps_flutter` com coordenadas reais e agrupamento de marcadores está na Sprint 4. | `ae986a7` (pendente) |
 | 6 | O estado offline da Nova Denúncia é apenas visual: o parâmetro `isOffline` não está ligado a nenhuma detecção de rede nem a uma fila local. | A própria IA indicou a limitação em comentário no código, e o grupo confirmou na revisão. | Mantido como base de interface. A detecção de conectividade e a fila offline-first entram na Sprint 4. | `1b21cf1` (pendente) |
 | 7 | Os primeiros testes de widget tentavam abrir a câmera e o GPS reais e falhavam no `flutter test`, que não tem acesso a plugins nativos. | Testes quebrando com `MissingPluginException`. | Injeção de dependências: `HomeScreen.openCamera` e `CameraScreen.locationService` recebem versões falsas nos testes. | `9b27f4f` |
+| 8 | Depois da integração com a API, a `HomeScreen` passou a depender do Riverpod e da rede, mas os testes antigos continuaram montando a tela sem `ProviderScope`. Três testes quebraram na `dev`. | `flutter test` falhando com `No ProviderScope found` e chamadas reais ao GPS. | Criado `test/helpers/test_app.dart`, que sobrescreve os providers de localização, da API e da autenticação com versões falsas. | Sprint 3 |
 
 ### Lições aprendidas
 
@@ -127,15 +129,14 @@ Pedir a causa antes da correção evitou que a IA saísse alterando arquivos ale
 | `image_picker` | ^1.1.2 | Alternativa para escolher foto da galeria quando a câmera não está disponível ou a permissão foi negada. Já reduz a qualidade da imagem (`imageQuality: 85`). |
 | `geolocator` | ^13.0.4 | Obtém latitude e longitude para georreferenciar a denúncia, com tratamento de permissão e de GPS desligado. É o pacote de localização mais mantido do ecossistema Flutter. |
 | `cupertino_icons` | ^1.0.8 | Ícones padrão do Flutter para iOS. |
+| `http` | ^1.5.0 | Chamadas ao backend de qualidade do ar e leitura do JSON, com timeout de 10 segundos. |
+| `shared_preferences` | ^2.5.6 | Perfil local (nome, XP e nível), último índice de qualidade do ar e última localização, guardados só no aparelho. |
 | `flutter_lints` | ^6.0.0 | Regras de análise estática recomendadas pelo time do Flutter, para manter o código gerado por IA dentro de um padrão. |
 
 ### Previstas para as próximas sprints
 
 | Biblioteca | Finalidade |
 | :--- | :--- |
-| `http` | Chamadas à API pública de qualidade do ar e tratamento do JSON, com timeout de 10 segundos. |
-| `shared_preferences` | Perfil local (nome, XP, nível e preferências), guardado só no aparelho. |
-| `shared_preferences` ou `hive` | Cache local dos dados da API, com validade temporal e aviso de "Desatualizado". |
 | `google_maps_flutter` | Mapa real com marcadores coloridos e agrupamento de focos. |
 | `firebase_storage` | Upload das fotos das denúncias. |
 | `flutter_image_compress` | Compressão da foto e remoção dos metadados EXIF antes do upload. |

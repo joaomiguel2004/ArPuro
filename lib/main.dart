@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/auth/anonymous_auth_service.dart';
 import 'core/theme/app_theme.dart';
 import 'features/home/presentation/home_screen.dart';
 import 'firebase_options.dart';
@@ -9,9 +10,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const ProviderScope(child: ArPuroApp()));
 }
@@ -30,14 +29,17 @@ class ArPuroApp extends StatelessWidget {
   }
 }
 
-class SplashScreen extends StatefulWidget {
+/// Splash que, enquanto anima, cria a sessão anônima no Firebase.
+/// Não existe tela de login: o app segue para a Home assim que a animação
+/// termina e a tentativa de login (com ou sem sucesso) é concluída.
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashScreenState extends ConsumerState<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -55,16 +57,13 @@ class _SplashScreenState extends State<SplashScreen>
         setState(() {});
       });
 
-    _controller.forward();
-
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreen()),
-          );
-        }
-      }
+    final signIn = ref.read(anonymousAuthServiceProvider).ensureSignedIn();
+    final animation = _controller.forward().orCancel.catchError((_) {});
+    Future.wait<Object?>([signIn, animation]).then((_) {
+      if (!mounted) return;
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
     });
   }
 

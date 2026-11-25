@@ -12,6 +12,7 @@ import '../../camera/presentation/camera_screen.dart';
 import '../../health/presentation/health_screen.dart';
 import '../../index_info/presentation/index_info_screen.dart';
 import '../../map/presentation/map_screen.dart';
+import '../../profile/presentation/profile_providers.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../report/domain/report_models.dart';
 import '../../report/presentation/new_report_screen.dart';
@@ -209,6 +210,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       onProfileTap: _openProfile,
                       locationLabel: locationLabel,
                       updatedAt: reading?.observedAt,
+                      profileInitial:
+                          ref.watch(userProfileProvider).asData?.value.initial ??
+                          'U',
                     ),
                     Expanded(
                       child: RefreshIndicator(

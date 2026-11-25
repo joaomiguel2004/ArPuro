@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../domain/air_quality.dart';
+import 'air_quality_cache.dart';
+import 'air_quality_json.dart';
 import 'home_location_service.dart';
 
 abstract interface class AirQualityDataSource {
@@ -13,7 +15,8 @@ abstract interface class AirQualityDataSource {
 /// The mobile app only consumes normalized IQAr data from the backend.
 /// Open-Meteo, the Brazilian scale, risk rules and recommendations stay server-side.
 class BackendAirQualityDataSource implements AirQualityDataSource {
-  static const _requestTimeout = Duration(seconds: 12);
+  /// Tempo máximo de espera antes de usar o último índice salvo.
+  static const requestTimeout = Duration(seconds: 10);
 
   final http.Client _client;
   final String _endpoint;
@@ -28,7 +31,7 @@ class BackendAirQualityDataSource implements AirQualityDataSource {
     final uri = _requestUri(location);
     final response = await _client
         .get(uri, headers: const {'Accept': 'application/json'})
-        .timeout(_requestTimeout);
+        .timeout(requestTimeout);
     if (response.statusCode != 200) {
       throw StateError(
         'O backend de qualidade do ar respondeu com HTTP ${response.statusCode}.',
@@ -41,7 +44,7 @@ class BackendAirQualityDataSource implements AirQualityDataSource {
         'Resposta inválida do backend de qualidade do ar.',
       );
     }
-    return _parseResponse(decoded, location.label);
+    return parseHomeAirQuality(decoded, location.label);
   }
 
   Uri _requestUri(HomeLocation location) {
@@ -69,78 +72,30 @@ class BackendAirQualityDataSource implements AirQualityDataSource {
       },
     );
   }
-
-  HomeAirQuality _parseResponse(
-    Map<String, dynamic> json,
-    String locationLabel,
-  ) {
-    final forecastData = json['forecast'];
-    final recommendationsData = json['recommendations'];
-    if (forecastData is! List || recommendationsData is! List) {
-      throw const FormatException(
-        'A resposta do backend não contém previsão e recomendações.',
-      );
-    }
-
-    final index = _requiredInt(json, 'index');
-    if (index < 0 || index > 400) {
-      throw const FormatException('O backend retornou um IQAr fora da escala.');
-    }
-
-    return HomeAirQuality(
-      index: index,
-      band: AirQualityBand.fromApi(_requiredString(json, 'band')),
-      bandDescription: _requiredString(json, 'bandDescription'),
-      risk: RespiratoryRisk.fromApi(_requiredString(json, 'risk')),
-      riskGuidance: _requiredString(json, 'riskGuidance'),
-      dominantPollutant: _requiredString(json, 'dominantPollutant'),
-      observedAt: DateTime.parse(_requiredString(json, 'observedAt')),
-      isStale: json['isStale'] == true,
-      locationLabel: locationLabel,
-      sourceLabel: _requiredString(json, 'sourceLabel'),
-      forecast: [
-        for (final item in forecastData)
-          if (item is Map<String, dynamic>)
-            AirQualityForecastPoint(
-              time: DateTime.parse(_requiredString(item, 'time')),
-              index: _requiredInt(item, 'index'),
-              band: AirQualityBand.fromApi(_requiredString(item, 'band')),
-            ),
-      ],
-      recommendations: [
-        for (final item in recommendationsData)
-          if (item is Map<String, dynamic>)
-            AirQualityRecommendation(
-              category: _requiredString(item, 'category'),
-              title: _requiredString(item, 'title'),
-              description: _requiredString(item, 'description'),
-            ),
-      ],
-    );
-  }
-
-  String _requiredString(Map<String, dynamic> json, String key) {
-    final value = json[key];
-    if (value is! String || value.isEmpty) {
-      throw FormatException('Campo "$key" ausente na resposta do backend.');
-    }
-    return value;
-  }
-
-  int _requiredInt(Map<String, dynamic> json, String key) {
-    final value = json[key];
-    if (value is! num || !value.isFinite) {
-      throw FormatException('Campo "$key" inválido na resposta do backend.');
-    }
-    return value.round();
-  }
 }
 
 class AirQualityRepository {
   final AirQualityDataSource _dataSource;
+  final AirQualityCache? _cache;
 
-  const AirQualityRepository(this._dataSource);
+  const AirQualityRepository(this._dataSource, {this._cache});
 
-  Future<HomeAirQuality> getCurrent(HomeLocation location) =>
-      _dataSource.fetch(location);
+  /// Busca o índice no backend e salva no cache. Se a consulta falhar ou
+  /// passar de 10 s, devolve o último índice salvo marcado como desatualizado.
+  Future<HomeAirQuality> getCurrent(HomeLocation location) async {
+    try {
+      final reading = await _dataSource
+          .fetch(location)
+          .timeout(BackendAirQualityDataSource.requestTimeout);
+      await _cache?.save(reading);
+      return reading;
+    } catch (error) {
+      final cached = await _cache?.load();
+      if (cached == null) rethrow;
+      return cached.copyWith(
+        isStale: true,
+        locationLabel: 'Último índice salvo',
+      );
+    }
+  }
 }

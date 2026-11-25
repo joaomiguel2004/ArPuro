@@ -10,7 +10,7 @@ O código é desenvolvido em branches de cada integrante, integrado na branch `d
 | :---: | :---: | :--- | :---: |
 | 1 | Até 10/11 | Modelagem técnica do aplicativo | Concluída |
 | 2 | Até 17/11 | Estrutura do projeto e telas principais | Concluída |
-| 3 | Até 24/11 | Firebase com acesso anônimo, API de qualidade do ar e documentação de planejamento | Em andamento |
+| 3 | Até 24/11 | Firebase com acesso anônimo, API de qualidade do ar e documentação de planejamento | Concluída |
 | 4 | Até 01/12 | Funcionalidades do aditivo, testes e entrega final | Planejada |
 
 ---
@@ -52,24 +52,28 @@ O código é desenvolvido em branches de cada integrante, integrado na branch `d
 
 ---
 
-## Sprint 3 — Até 24/11 · Em andamento
+## Sprint 3 — Até 24/11 · Concluída
 
 **Objetivo:** conectar o app ao Firebase com acesso anônimo, consumir a API de qualidade do ar e documentar o planejamento.
 
-| Entrega | Item da avaliação |
-| :--- | :---: |
-| Registro de uso de IA (`docs/uso-de-ia.md`) | b) vi |
-| Escopo do projeto (`docs/escopo.md`) | d) i |
-| EAP simplificada (`docs/eap.md`) | d) ii |
-| Planejamento em sprints (este documento) | d) iii |
-| Configuração do Firebase (`flutterfire configure`) e inicialização no `main.dart` | a) ii |
-| Autenticação anônima automática na splash (`signInAnonymously()`), sem tela de login | a) ii, e) i |
-| Perfil local: nome padrão "Usuário" editável, XP e nível ganhos por denúncia, salvos só no aparelho (`shared_preferences`) | RF06, RNF02 |
-| Consumo da API de qualidade do ar (HTTP + JSON) no semáforo da Home | Aditivo |
-| Cache do último índice com timeout de 10 s e aviso "Desatualizado" | Aditivo |
-| Classificação automática de risco (baixo, moderado, alto, crítico) | Aditivo |
-| Providers do Riverpod para os dados da Home | Aditivo |
-| Atualização do README e do CHANGELOG | c) ii |
+| Entrega | Item da avaliação | Responsável | Commit |
+| :--- | :---: | :--- | :---: |
+| Registro de uso de IA (`docs/uso-de-ia.md`) | b) vi | Manuel Luan | `93c7ae2` |
+| Escopo do projeto (`docs/escopo.md`) | d) i | José Victor | `f819166` |
+| EAP simplificada (`docs/eap.md`) | d) ii | Manuel Luan | `93c7ae2` |
+| Planejamento em sprints (este documento) | d) iii | José Victor | `47df365`, `efba02d` |
+| Configuração do Firebase (`flutterfire configure`) e inicialização no `main.dart` | a) ii | Rian Vinícius | `3f96c74` |
+| Autenticação anônima automática na splash (`signInAnonymously()`), sem tela de login | a) ii, e) i | João Miguel | — |
+| Perfil local: nome padrão "Usuário" editável, XP e nível ganhos por denúncia, salvos só no aparelho (`shared_preferences`) | RF06, RNF02 | João Miguel | — |
+| Consumo da API de qualidade do ar (HTTP + JSON) no semáforo da Home | Aditivo | William Estevam | `9f810b2` |
+| Cache do último índice com timeout de 10 s e aviso "Desatualizado" | Aditivo | William Estevam (backend) e João Miguel (app) | `9f810b2` |
+| Classificação automática de risco (baixo, moderado, alto, crítico) | Aditivo | William Estevam | `9f810b2` |
+| Providers do Riverpod para os dados da Home | Aditivo | William Estevam | `9f810b2` |
+| Atualização do README e do CHANGELOG | c) ii | João Miguel | `a834c1c` |
+
+**Resultado:** o app entra sozinho com uma sessão anônima do Firebase durante a splash (se não houver internet, segue sem sessão e tenta de novo na próxima abertura). O semáforo da Home consome o backend `airQuality` (Cloud Functions), que calcula o IQAr brasileiro e o risco respiratório a partir do Open-Meteo. O app guarda o último índice recebido e, se o backend falhar ou demorar mais de 10 s, mostra esse índice com o aviso "Desatualizado". O perfil passou a ser real: começa como "Usuário", o nome pode ser editado e cada denúncia enviada soma 50 XP, tudo salvo só no aparelho. Os testes automatizados foram corrigidos para rodar sem rede, GPS e Firebase (19 testes passando).
+
+**Pendências levadas para a Sprint 4:** as denúncias ainda não são gravadas no Firestore, o mapa continua simulado e o estado offline da Nova Denúncia continua apenas visual. A autenticação anônima precisa estar ativada no console do Firebase (Authentication → Método de login → Anônimo).
 
 ---
 
