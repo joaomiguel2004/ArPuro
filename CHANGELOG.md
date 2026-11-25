@@ -9,3 +9,6 @@
 | **29/09** | Criação do arquivo apresentacaoFinalUnidadeI.pdf, que traz tudo que foi desenvolvido durante a unidade. |
 | **10/11** | Criação dos diagramas do projeto, do fluxograma e da modelagem do banco de dados. |
 | **17/11** | Criação das telas da aplicação e implementação de funcionalidades básicas. |
+| **20/11** | Criação da eap.md (EAP simplificada) e da uso-de-ia.md (registro de uso de IA, com os prompts mais eficientes, os erros da IA e a justificativa das bibliotecas). |
+| **23/11** | Criação da sprints.md, com o planejamento do desenvolvimento em sprints, e da escopo.md, com o escopo do projeto. |
+| **24/11** | Integração da qualidade do ar via API, com backend do IQAr (Cloud Functions), classificação de risco respiratório e recomendações na Home e na aba Saúde; configuração do Firebase e inicialização no main.dart; autenticação anônima na splash, perfil local com XP e nível, cache do último índice com aviso "Desatualizado" e correção dos testes automatizados. |
