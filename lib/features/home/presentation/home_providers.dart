@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
+import '../data/air_quality_cache.dart';
 import '../data/air_quality_repository.dart';
 import '../data/home_location_service.dart';
 import '../domain/air_quality.dart';
@@ -26,8 +27,15 @@ final airQualityDataSourceProvider = Provider<AirQualityDataSource>(
   ),
 );
 
+final airQualityCacheProvider = Provider<AirQualityCache>(
+  (ref) => const AirQualityCache(),
+);
+
 final airQualityRepositoryProvider = Provider<AirQualityRepository>(
-  (ref) => AirQualityRepository(ref.watch(airQualityDataSourceProvider)),
+  (ref) => AirQualityRepository(
+    ref.watch(airQualityDataSourceProvider),
+    cache: ref.watch(airQualityCacheProvider),
+  ),
 );
 
 final homeAirQualityProvider = FutureProvider<HomeAirQuality>((ref) async {

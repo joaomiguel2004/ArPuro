@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/theme/app_colors.dart';
+import '../../profile/presentation/profile_providers.dart';
 
 /// Modal exibido após o envio de uma denúncia, com o ganho de XP do usuário.
 class ReportSuccessDialog extends StatelessWidget {
@@ -8,22 +10,42 @@ class ReportSuccessDialog extends StatelessWidget {
   final int previousXp;
   final int xpGained;
   final int maxXp;
+  final bool leveledUp;
 
   const ReportSuccessDialog({
     super.key,
-    this.level = 3,
-    this.levelTitle = 'Guardião',
-    this.previousXp = 750,
-    this.xpGained = 50,
-    this.maxXp = 1000,
+    required this.level,
+    required this.levelTitle,
+    required this.previousXp,
+    required this.xpGained,
+    required this.maxXp,
+    this.leveledUp = false,
   });
 
-  static Future<void> show(BuildContext context) {
+  /// Monta o modal a partir do XP real ganho, dentro do nível atual.
+  factory ReportSuccessDialog.fromGain(XpGain gain) {
+    final after = gain.after;
+    final level = after.level;
+    final currentInLevel = after.xpInLevel.clamp(0, after.xpForLevel);
+    final previousInLevel = gain.leveledUp
+        ? 0
+        : (currentInLevel - gain.gained).clamp(0, after.xpForLevel);
+    return ReportSuccessDialog(
+      level: level.number,
+      levelTitle: level.title,
+      previousXp: previousInLevel,
+      xpGained: gain.gained,
+      maxXp: after.xpForLevel,
+      leveledUp: gain.leveledUp,
+    );
+  }
+
+  static Future<void> show(BuildContext context, {required XpGain gain}) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       barrierColor: const Color(0x990F172A),
-      builder: (_) => const ReportSuccessDialog(),
+      builder: (_) => ReportSuccessDialog.fromGain(gain),
     );
   }
 
@@ -74,6 +96,18 @@ class ReportSuccessDialog extends StatelessWidget {
                 color: AppColors.textMuted,
               ),
             ),
+            if (leveledUp) ...[
+              const SizedBox(height: 12),
+              Text(
+                'Você subiu para o nível $level!',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFFB45309),
+                ),
+              ),
+            ],
             const SizedBox(height: 28),
             _XpProgressCard(
               level: level,
@@ -131,6 +165,7 @@ class _XpProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentXp = (previousXp + xpGained).clamp(0, maxXp);
+    final safeMax = maxXp <= 0 ? 1 : maxXp;
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 14),
@@ -176,10 +211,7 @@ class _XpProgressCard extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           TweenAnimationBuilder<double>(
-            tween: Tween(
-              begin: previousXp / maxXp,
-              end: currentXp / maxXp,
-            ),
+            tween: Tween(begin: previousXp / safeMax, end: currentXp / safeMax),
             duration: const Duration(milliseconds: 900),
             curve: Curves.easeOutCubic,
             builder: (context, value, _) => _XpBar(fill: value),

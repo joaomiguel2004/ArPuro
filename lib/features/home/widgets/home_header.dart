@@ -6,12 +6,14 @@ class HomeHeader extends StatelessWidget {
   final VoidCallback onProfileTap;
   final String locationLabel;
   final DateTime? updatedAt;
+  final String profileInitial;
 
   const HomeHeader({
     super.key,
     required this.onProfileTap,
     this.locationLabel = 'Buscando localização',
     this.updatedAt,
+    this.profileInitial = 'U',
   });
 
   @override
@@ -65,10 +67,10 @@ class HomeHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  'W',
-                  style: TextStyle(
+                  profileInitial,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 16,
